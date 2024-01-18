@@ -15,6 +15,7 @@ import ButtonCloseModal from "@/components/buttons/ButtonCloseModal";
 import { OrderFormation } from "./screens/OrderFormation";
 import { OrderDetails } from "./screens/OrderDetails";
 import SendMessage from "@/utils/telegramSendMessage";
+import { getUserLocation } from "@/utils/getUserLocation";
 
 interface IOrderProps {}
 
@@ -97,6 +98,7 @@ const Order: React.FunctionComponent<IOrderProps> = (props) => {
     let resMas = {
       "Device: ": device,
       "Button: ": buttonTrigger,
+      "userLocation: ": await getUserLocation(),
     };
 
     resMas = { ...resMas, ...address, ...orderData };
