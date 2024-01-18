@@ -1,0 +1,17 @@
+.Footer {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: get-vw(15px);
+}
+
+.Footer_item {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: get-vw(10px);
+
+  transition: 0.2s ease-in-out;
+  transition-property: color;
+
+  &:hover {
+    color: rgb(255, 255, 255);
+  }
+}

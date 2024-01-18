@@ -1,0 +1,42 @@
+.MainDesk {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  position: relative;
+  padding: 0 get-vw(30px);
+}
+
+.MainDesk_bgBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110%;
+  opacity: 0;
+
+  z-index: -1;
+}
+
+.MainDesk_bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 110%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.MainDesk_container {
+  display: flex;
+  height: calc(100% - get-vw(85px));
+}
+
+.MainDesk_mainContent {
+  display: flex;
+  flex: 1 0 0;
+}

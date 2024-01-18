@@ -1,0 +1,39 @@
+.Search {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: get-vw(15px);
+  height: 100%;
+  padding: 0 get-vw(20px);
+  border-radius: get-vw(100px);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(get-vw(7px));
+
+  transition: 0.2s ease-in-out;
+  transition-property: box-shadow;
+
+  &:hover {
+    box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.15);
+  }
+}
+
+.Search_icon {
+  height: get-vw(17px);
+  width: auto;
+}
+
+.Search_input {
+  height: 100%;
+  width: get-vw(350px);
+
+  color: #fff;
+  font-size: get-vw(14px);
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  &:focus .Search {
+    box-shadow: inset 0px 0px 10px 0px rgba(255, 255, 255, 0.35);
+  }
+}

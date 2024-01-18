@@ -1,0 +1,124 @@
+.ButtonBuy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+  height: 100%;
+}
+
+.ButtonBuy_inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  padding: get-vw(15px) get-vw(25px);
+
+  font-family: $fontPlusJakartaSans;
+  font-size: get-vw(15px);
+  font-weight: 500;
+
+  background-color: #9999994b;
+  background-image: linear-gradient(
+    170deg,
+    rgba(255, 255, 255, 0.308) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+
+  border-radius: get-vw(34.5px);
+
+  backdrop-filter: blur(get-vw(5px));
+  box-shadow: get-vw(-10px) 0px get-vw(20px) 0px #ff4d4d5d;
+  cursor: pointer;
+
+  transition: 0.2s ease-in-out;
+  transition-property: box-shadow, transform;
+
+  z-index: 2;
+
+  & svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(
+      -45deg,
+      rgba(133, 108, 232, 1) 0%,
+      rgba(255, 0, 0, 1) 100%
+    );
+
+    border-radius: get-vw(34.5px);
+
+    z-index: -1;
+    opacity: 0.2;
+
+    transition: 0.2s ease-in-out;
+    transition-property: opacity;
+  }
+
+  &:hover {
+    box-shadow: get-vw(-10px) 0px get-vw(20px) 0px #ff4d4d5d;
+
+    &::before {
+      opacity: 0.4;
+    }
+  }
+
+  @media (max-width: $tablet) {
+    width: 90%;
+
+    font-size: get-vw-td(30px);
+
+    border-radius: get-vw-td(50px);
+
+    box-shadow: get-vw-td(-10px) 0px get-vw-td(20px) 0px #ff4d4d5d;
+    cursor: pointer;
+
+    &::before {
+      border-radius: get-vw-td(50px);
+    }
+  }
+
+  @media (max-width: $mobile) {
+    width: 90%;
+
+    font-size: get-vw-m(30px);
+
+    border-radius: get-vw-m(50px);
+
+    box-shadow: get-vw-m(-10px) 0px get-vw-m(20px) 0px #ff4d4d5d;
+    cursor: pointer;
+
+    &::before {
+      border-radius: get-vw-m(50px);
+    }
+  }
+
+  @media (max-width: $mobile-s) {
+    width: 90%;
+
+    font-size: get-vw-ms(15px);
+
+    border-radius: get-vw-ms(50px);
+
+    box-shadow: get-vw-ms(-10px) 0px get-vw-ms(20px) 0px #ff4d4d5d;
+    cursor: pointer;
+
+    &::before {
+      border-radius: get-vw-ms(50px);
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.ButtonCloseModal {
+  position: absolute;
+  top: get-vw(22px);
+  right: get-vw(22px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: get-vw(32px);
+  height: get-vw(32px);
+
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+
+  cursor: pointer;
+  z-index: 100;
+
+  transition: 0.2s ease-in-out;
+  transition-property: background;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.24);
+  }
+
+  & svg {
+    width: 30%;
+    height: auto;
+  }
+
+  @media (max-width: $mobile-s) {
+    top: get-vw-ms(22px);
+    right: get-vw-ms(22px);
+    width: get-vw-ms(32px);
+    height: get-vw-ms(32px);
+  }
+}

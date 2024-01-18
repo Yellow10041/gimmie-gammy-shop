@@ -1,0 +1,35 @@
+.ButtonHeaderNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: get-vw(10px);
+  height: 90%;
+  padding: 0 get-vw(35px);
+
+  font-size: get-vw(15px);
+  font-weight: 500;
+
+  border-radius: get-vw(35px);
+  border: get-vw(1.5px) solid rgba(255, 255, 255, 0.35);
+
+  transition: 0.2s ease-in-out;
+  transition-property: box-shadow;
+
+  & svg {
+    height: get-vw(13px);
+    width: auto;
+  }
+
+  &:hover {
+    box-shadow: inset 0px 0px 10px 0px rgba(255, 255, 255, 0.25);
+  }
+
+  &.fill {
+    background-color: rgba(255, 255, 255, 0.35);
+    border: none;
+
+    &:hover {
+      box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.35);
+    }
+  }
+}

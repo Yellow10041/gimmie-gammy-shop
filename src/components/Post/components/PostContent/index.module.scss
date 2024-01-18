@@ -1,0 +1,151 @@
+.PostContent {
+  display: flex;
+  // flex: 1 0 0;
+  position: relative;
+  width: 450px;
+  height: 100%;
+
+  background-color: rgba(255, 255, 255, 0.15);
+
+  border-radius: get-vw(40px);
+
+  overflow: hidden;
+}
+
+.PostContent_video {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  & video {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+
+    z-index: 2;
+
+    &.back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      filter: blur(10px);
+
+      z-index: 1;
+
+      opacity: 0.3;
+    }
+  }
+}
+
+.PostContent_info {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: get-vw(10px);
+  width: 100%;
+  height: 100%;
+  padding: get-vw(30px) get-vw(20px);
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+.PostContent_info_header {
+  display: flex;
+  justify-content: space-between;
+  align-content: inherit;
+
+  pointer-events: all;
+}
+
+.PostContent_info_header_account {
+  display: flex;
+  align-items: center;
+  gap: get-vw(9px);
+}
+
+.PostContent_info_header_account_avatar {
+  position: relative;
+  width: get-vw(40px);
+  height: get-vw(40px);
+
+  & img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+
+  & svg {
+    position: absolute;
+    top: -5%;
+    right: -5%;
+
+    width: get-vw(17px);
+    height: get-vw(17px);
+  }
+}
+
+.PostContent_info_header_account_info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.PostContent_info_header_account_info_name {
+  font-family: $fontPlusJakartaSans;
+  font-size: get-vw(16px);
+  font-weight: 700;
+}
+
+.PostContent_info_header_account_info_dataPosted {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: $fontPlusJakartaSans;
+  font-size: get-vw(11px);
+  font-weight: 400;
+}
+
+.PostContent_info_description {
+  color: #f2f2f2;
+  text-shadow: 0px get-vw(4px) get-vw(54px) rgba(0, 0, 0, 0.25);
+  font-family: $fontPlusJakartaSans;
+  font-size: get-vw(26px);
+  font-weight: 500;
+
+  pointer-events: all;
+}
+
+.PostContent_pause {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: get-vw(100px);
+  height: get-vw(100px);
+  border-radius: 50%;
+  background-color: #00000070;
+
+  opacity: 0;
+
+  z-index: 10;
+
+  pointer-events: none;
+
+  & svg {
+    height: 50%;
+    width: auto;
+  }
+}

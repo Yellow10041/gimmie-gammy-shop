@@ -1,0 +1,71 @@
+.ButtonPostStat {
+  display: flex;
+  flex-direction: column;
+  gap: get-vw(5px);
+  width: min-content;
+
+  @media (max-width: $mobile-s) {
+    gap: get-vw-ms(5px);
+  }
+}
+
+.ButtonPostStat_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: get-vw(50px);
+  height: get-vw(50px);
+
+  border: get-vw(1px) solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: 0.2s ease-in-out;
+  transition-property: background-color;
+
+  & svg {
+    width: 50%;
+    height: auto;
+
+    opacity: 0.6;
+
+    transform: translateY(5%);
+
+    transition: 0.2s ease-in-out;
+    transition-property: opacity;
+  }
+
+  &:hover {
+    & svg {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: $mobile-s) {
+    width: get-vw-ms(50px);
+    height: get-vw-ms(50px);
+
+    border: get-vw-ms(2px) solid rgba(255, 255, 255, 0.2);
+
+    & svg {
+      opacity: 1;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+.ButtonPostStat_stat {
+  color: #fff;
+  text-align: center;
+  font-family: $fontPlusJakartaSans;
+  font-size: get-vw(12px);
+  font-weight: 500;
+
+  @media (max-width: $mobile-s) {
+    font-size: get-vw-ms(11px);
+  }
+}

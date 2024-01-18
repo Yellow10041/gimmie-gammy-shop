@@ -1,0 +1,45 @@
+.MobileNav {
+  display: flex;
+  align-items: center;
+
+  @media (max-width: $tablet) {
+    height: get-vw-td(150px);
+    padding: get-vw-td(20px) 0;
+  }
+
+  @media (max-width: $mobile) {
+    height: get-vw-m(100px);
+    padding: get-vw-m(10px) 0;
+  }
+
+  @media (max-width: $mobile-s) {
+    height: get-vw-ms(65px);
+    padding: get-vw-ms(10px) 0;
+  }
+}
+
+.MobileNav_profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+}
+
+.MobileNav_profile_avatar {
+  width: get-vw-m(50px);
+  height: get-vw-m(50px);
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: $mobile-s) {
+    width: get-vw-ms(35px);
+    height: get-vw-ms(35px);
+  }
+}

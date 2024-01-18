@@ -1,0 +1,30 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  overflow-y: scroll;
+  height: 100%;
+
+  &::-webkit-scrollbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    padding: 5px;
+    width: get-vw(10px);
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: get-vw(10px);
+
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    padding: 5px;
+    background-color: #000;
+    background-color: rgba(255, 255, 255, 0.05);
+
+    border-radius: get-vw(20px);
+  }
+}

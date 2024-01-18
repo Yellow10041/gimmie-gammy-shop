@@ -1,0 +1,60 @@
+.FullScreenVideo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  // background-color: rgba(145, 145, 145, 0.192);
+}
+
+.FullScreenVideo_video {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  height: 100%;
+  overflow: hidden;
+  border-radius: get-vw(45px);
+
+  & video {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+  }
+}
+
+.FullScreenVideo_video_buy {
+  position: absolute;
+  top: get-vw(20px);
+}
+
+.FullScreenVideo_close {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: get-vw(20px);
+  right: get-vw(20px);
+  width: get-vw(50px);
+  height: get-vw(50px);
+
+  background: rgba(255, 255, 255, 0.34);
+
+  border-radius: 50%;
+
+  backdrop-filter: blur(get-vw(35px));
+
+  cursor: pointer;
+
+  transition: 0.2s ease-in-out;
+  transition-property: background;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.24);
+  }
+
+  & svg {
+    width: 30%;
+    height: auto;
+  }
+}

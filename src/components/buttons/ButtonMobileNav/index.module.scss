@@ -1,0 +1,18 @@
+.ButtonMobileNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+  height: 100%;
+
+  & svg {
+    height: 50%;
+    width: auto;
+  }
+
+  @media (max-width: $mobile-s) {
+    & svg {
+      height: 60%;
+    }
+  }
+}

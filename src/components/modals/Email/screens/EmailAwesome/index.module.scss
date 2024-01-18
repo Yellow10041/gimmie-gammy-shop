@@ -1,0 +1,78 @@
+.EmailAwesome_icon {
+  display: flex;
+  justify-content: center;
+  height: get-vw(90px);
+
+  & svg {
+    height: 100%;
+    width: auto;
+  }
+
+  @media (max-width: $mobile-s) {
+    height: get-vw-ms(70px);
+  }
+}
+
+.EmailAwesome_header {
+  margin-top: get-vw(40px);
+
+  text-align: center;
+  font-size: get-vw(32px);
+  font-weight: 500;
+  line-height: 105.7%; /* 33.824px */
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(10px);
+
+    font-size: get-vw-ms(32px);
+  }
+}
+
+.EmailAwesome_description {
+  margin-top: get-vw(25px);
+
+  color: rgb(255, 255, 255, 60%);
+  text-align: center;
+  font-size: get-vw(14px);
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(15px);
+
+    font-size: get-vw-ms(14px);
+  }
+}
+
+.EmailAwesome_button {
+  margin-top: get-vw(20px);
+
+  padding: get-vw(14px) get-vw(10px);
+
+  color: #000;
+  text-align: center;
+  font-size: get-vw(15px);
+  font-weight: 500;
+  letter-spacing: get-vw(-0.3px);
+
+  background: #fff;
+  border-radius: get-vw(70px);
+
+  cursor: pointer;
+
+  transition: 0.2s ease-in-out;
+  transition-property: background;
+
+  &:hover {
+    background: #ffffffb6;
+  }
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(30px);
+
+    padding: get-vw-ms(14px) get-vw-ms(10px);
+
+    font-size: get-vw-ms(15px);
+    letter-spacing: get-vw-ms(-0.3px);
+
+    border-radius: get-vw-ms(70px);
+  }
+}

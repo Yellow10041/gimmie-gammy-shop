@@ -1,0 +1,122 @@
+.OrderDetails {
+  display: flex;
+  flex-direction: column;
+  gap: get-vw(20px);
+  padding: get-vw(20px) get-vw(40px);
+
+  @media screen and (max-width: $tablet) {
+    gap: get-vw-ms(20px);
+    padding: get-vw-ms(30px) get-vw-ms(0px) 0;
+  }
+}
+
+.OrderDetails_title {
+  color: #fff;
+  text-align: center;
+  font-family: $fontPoppins;
+  font-size: get-vw(20px);
+  font-weight: 700;
+  text-transform: capitalize;
+
+  @media screen and (max-width: $tablet) {
+    font-size: get-vw-ms(20px);
+    padding: 0 get-vw-ms(20px);
+  }
+}
+
+.OrderDetails_form_inputs {
+  display: flex;
+  flex-direction: column;
+  gap: get-vw(4px);
+
+  @media screen and (max-width: $tablet) {
+    gap: get-vw-ms(4px);
+    padding: 0 get-vw-ms(20px);
+  }
+}
+
+.OrderDetails_form_inputs_box {
+  display: flex;
+  gap: get-vw(4px);
+
+  & > input {
+    display: flex;
+    flex: 1 0 0;
+  }
+
+  @media screen and (max-width: $tablet) {
+    flex-direction: column;
+    gap: get-vw-ms(4px);
+  }
+}
+
+.OrderDetails_form_input {
+  padding: get-vw(15px) get-vw(20px);
+
+  color: #fff;
+  font-family: $fontPoppins;
+  font-size: get-vw(13px);
+  font-weight: 400;
+  letter-spacing: get-vw(-0.26px);
+
+  border-radius: get-vw(11px);
+  background: rgba(255, 255, 255, 0.05);
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+  }
+
+  @media screen and (max-width: $tablet) {
+    padding: get-vw-ms(15px) get-vw-ms(20px);
+
+    font-size: get-vw-ms(13px);
+    letter-spacing: get-vw-ms(-0.26px);
+
+    border-radius: get-vw-ms(11px);
+  }
+}
+
+.OrderDetails_button {
+  width: 100%;
+  margin-top: get-vw(20px);
+
+  padding: get-vw(14px) get-vw(10px);
+
+  color: #000;
+  text-align: center;
+  font-size: get-vw(15px);
+  font-weight: 500;
+  letter-spacing: get-vw(-0.3px);
+
+  background: #fff;
+  border-radius: get-vw(70px);
+
+  cursor: pointer;
+
+  transition: 0.2s ease-in-out;
+  transition-property: background;
+
+  &:hover {
+    background: #ffffffb6;
+  }
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(30px);
+
+    padding: get-vw-ms(14px) get-vw-ms(10px);
+
+    font-size: get-vw-ms(15px);
+    letter-spacing: get-vw-ms(-0.3px);
+
+    border-radius: get-vw-ms(70px);
+  }
+
+  &.disable {
+    background: #a0a0a0;
+    pointer-events: none;
+  }
+}

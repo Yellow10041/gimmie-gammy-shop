@@ -1,0 +1,97 @@
+.EmailEnter {
+}
+
+.EmailEnter_header {
+  text-align: center;
+  font-size: get-vw(20px);
+  font-weight: 700;
+  text-transform: capitalize;
+
+  @media (max-width: $mobile-s) {
+    font-size: get-vw-ms(20px);
+  }
+}
+
+.EmailEnter_description {
+  margin-top: get-vw(15px);
+  padding: 0 5%;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  font-size: get-vw(15px);
+  line-height: 133.333%; /*  */
+  letter-spacing: get-vw(-0.3px);
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(15px);
+    padding: 0;
+    font-size: get-vw-ms(15px);
+    letter-spacing: get-vw-ms(-0.3px);
+  }
+}
+
+.EmailEnter_input {
+  width: 100%;
+  margin-top: get-vw(25px);
+  padding: get-vw(15px) get-vw(20px);
+
+  font-size: get-vw(13px);
+
+  border-radius: get-vw(80px);
+  background: rgba(255, 255, 255, 0.05);
+
+  transition: 0.2s ease-in-out;
+  transition-property: background;
+
+  &::placeholder {
+    color: #ffffff5e;
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  &:focus {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(25px);
+    padding: get-vw-ms(15px) get-vw-ms(20px);
+
+    font-size: get-vw-ms(13px);
+
+    border-radius: get-vw-ms(80px);
+  }
+}
+
+.EmailEnter_button {
+  width: 100%;
+  margin-top: get-vw(20px);
+  padding: get-vw(16px) get-vw(10px);
+
+  color: #000;
+  text-align: center;
+  font-size: get-vw(15px);
+  font-weight: 500;
+
+  border-radius: get-vw(70px);
+  background: #a0a0a0;
+
+  transition: 0.2s ease-in-out;
+  transition-property: background;
+
+  cursor: not-allowed;
+
+  &.active {
+    background: #fff;
+
+    cursor: pointer;
+  }
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(20px);
+    padding: get-vw-ms(16px) get-vw-ms(10px);
+
+    font-size: get-vw-ms(15px);
+
+    border-radius: get-vw-ms(70px);
+  }
+}

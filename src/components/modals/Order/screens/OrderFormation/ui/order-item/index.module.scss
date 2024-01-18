@@ -1,0 +1,219 @@
+.OrderItem {
+  display: flex;
+  flex-direction: column;
+  gap: get-vw(13px);
+  width: get-vw(240px);
+
+  @media screen and (max-width: $tablet) {
+    width: 100%;
+  }
+}
+
+.OrderItem_card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: get-vw(300px);
+  padding: get-vw(14px);
+
+  border-radius: get-vw(20px);
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -2%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 40%;
+    width: 105%;
+    background-image: linear-gradient(to bottom, #00000000 0%, #0000005b 100%);
+    filter: blur(5px);
+    z-index: -1;
+  }
+
+  @media screen and (max-width: $tablet) {
+    height: get-vw-ms(300px);
+    padding: get-vw-ms(14px);
+
+    border-radius: get-vw-ms(20px);
+  }
+}
+
+.OrderItem_card_lookImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  z-index: -2;
+}
+
+.OrderItem_card_header {
+  position: absolute;
+  top: get-vw(9px);
+  left: get-vw(9px);
+
+  @media screen and (max-width: $tablet) {
+    top: get-vw-ms(9px);
+    left: get-vw-ms(9px);
+  }
+}
+
+.OrderItem_card_header_brand {
+  display: flex;
+  align-items: center;
+  gap: get-vw(4px);
+  padding: get-vw(5px) get-vw(7px) get-vw(5px) get-vw(5px);
+
+  border-radius: get-vw(60px);
+  background: rgba(175, 175, 175, 0.3);
+  backdrop-filter: blur(5px);
+
+  @media screen and (max-width: $tablet) {
+    gap: get-vw-ms(4px);
+    padding: get-vw-ms(5px) get-vw-ms(7px) get-vw-ms(5px) get-vw-ms(5px);
+
+    border-radius: get-vw-ms(60px);
+  }
+}
+
+.OrderItem_card_header_brand_avatar {
+  width: get-vw(14px);
+  height: get-vw(14px);
+
+  border-radius: 100%;
+  object-fit: cover;
+
+  @media screen and (max-width: $tablet) {
+    width: get-vw-ms(14px);
+    height: get-vw-ms(14px);
+  }
+}
+
+.OrderItem_header_brand_name {
+  color: #fff;
+  font-family: $fontPlusJakartaSans;
+  font-size: get-vw(12px);
+  font-weight: 400;
+
+  @media screen and (max-width: $tablet) {
+    font-size: get-vw-ms(12px);
+  }
+}
+
+.OrderItem_card_footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.OrderItem_card_name {
+  color: #fff;
+  font-family: $fontPoppins;
+  font-size: get-vw(14px);
+  font-weight: 400;
+  letter-spacing: get-vw(-0.28px);
+
+  @media screen and (max-width: $tablet) {
+    font-size: get-vw-ms(14px);
+    letter-spacing: get-vw-ms(-0.28px);
+  }
+}
+
+.OrderItem_card_price {
+  color: #fff;
+  font-family: $fontPoppins;
+  font-size: get-vw(14px);
+  font-weight: 600;
+  letter-spacing: get-vw(-0.28px);
+
+  @media screen and (max-width: $tablet) {
+    font-size: get-vw-ms(14px);
+    letter-spacing: get-vw-ms(-0.28px);
+  }
+}
+
+.OrderItem_sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: get-vw(4px);
+
+  @media screen and (max-width: $tablet) {
+    gap: get-vw-ms(4px);
+    margin-top: get-vw-ms(10px);
+  }
+}
+
+.OrderItem_sizes_item {
+  position: relative;
+  overflow: hidden;
+  padding: get-vw(5px) get-vw(10px);
+
+  border-radius: get-vw(7px);
+  border: get-vw(1px) solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.3);
+
+  cursor: pointer;
+
+  transition: 0.2s ease-in-out;
+  transition-property: border-color;
+
+  @media screen and (max-width: $tablet) {
+    padding: get-vw-ms(5px) get-vw-ms(10px);
+
+    border-radius: get-vw-ms(7px);
+    border: get-vw-ms(1px) solid rgba(255, 255, 255, 0.14);
+  }
+
+  &.disable {
+    background: rgba(255, 255, 255, 0.2);
+
+    cursor: not-allowed;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+
+      height: 200%;
+      width: get-vw(1px);
+      background: rgba(255, 255, 255, 0.2);
+      transform-origin: center center;
+
+      z-index: 2;
+    }
+
+    @media screen and (max-width: $tablet) {
+      &::before {
+        width: get-vw-ms(1px);
+      }
+    }
+
+    .OrderItem_sizes_item_text {
+      color: #c8c8c8be;
+      z-index: -1;
+    }
+  }
+
+  &.active {
+    border-color: #fff;
+  }
+}
+
+.OrderItem_sizes_item_text {
+  position: relative;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: $fontPlusJakartaSans;
+  font-size: get-vw(14px);
+  font-weight: 400;
+
+  @media screen and (max-width: $tablet) {
+    font-size: get-vw-ms(14px);
+  }
+}

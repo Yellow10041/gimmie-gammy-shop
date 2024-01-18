@@ -1,0 +1,8 @@
+.Header {
+  display: flex;
+  align-items: center;
+  height: get-vw(85px);
+  box-sizing: content-box;
+  padding: get-vw(20px) 0;
+  border-bottom: get-vw(1px) solid rgba(255, 255, 255, 0.2);
+}

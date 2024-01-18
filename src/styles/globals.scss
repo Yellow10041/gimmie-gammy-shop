@@ -1,0 +1,72 @@
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+
+  padding: 0;
+  margin: 0;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  font-size: get-vw(16px);
+  color: #fff;
+  font-family: $fontPoppins;
+}
+
+html {
+  overflow: hidden;
+  background-color: #000;
+
+  &::-webkit-scrollbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    padding: 5px;
+    width: get-vw(10px);
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: get-vw(10px);
+
+    box-shadow: inset 0px 0px get-vw(7px) #ffffff77;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    padding: 5px;
+    background-color: #000;
+    box-shadow: inset 0px 0px get-vw(7px) #fff;
+    border-radius: get-vw(20px);
+  }
+}
+
+html,
+body {
+  max-height: 100%;
+  height: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+button {
+  cursor: pointer;
+}
+
+#fullpage {
+  width: 100%;
+  height: 100%;
+
+  z-index: 5;
+}
+
+.section,
+.fp-overflow {
+  width: 100%;
+  height: 100%;
+}

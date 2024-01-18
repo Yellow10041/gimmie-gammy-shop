@@ -1,0 +1,45 @@
+.Order {
+  display: inline-flex;
+  position: relative;
+  width: get-vw(550px);
+
+  opacity: 0;
+
+  @media (max-width: $mobile-s) {
+    width: 90%;
+  }
+}
+
+.Order_back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(255, 255, 255, 0.14);
+
+  border-radius: get-vw(40px);
+  backdrop-filter: blur(get-vw(35px));
+
+  @media (max-width: $mobile-s) {
+    border-radius: get-vw-ms(35px);
+  }
+}
+
+.Order_swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.Order_swiper_slide {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: get-vw(25px);
+
+  @media (max-width: $mobile-s) {
+    padding: get-vw-ms(25px) get-vw-ms(8px) get-vw-ms(8px);
+  }
+}

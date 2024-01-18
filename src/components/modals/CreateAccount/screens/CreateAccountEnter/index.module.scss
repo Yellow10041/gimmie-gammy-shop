@@ -1,0 +1,139 @@
+.CreateAccountEnter {
+}
+
+.CreateAccountEnter_header {
+  text-align: center;
+  font-size: get-vw(20px);
+  font-weight: 700;
+  text-transform: capitalize;
+
+  @media (max-width: $mobile-s) {
+    font-size: get-vw-ms(20px);
+  }
+}
+
+.CreateAccountEnter_description {
+  margin-top: get-vw(15px);
+  padding: 0 5%;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  font-size: get-vw(15px);
+  line-height: 133.333%; /*  */
+  letter-spacing: get-vw(-0.3px);
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(15px);
+    padding: 0;
+    font-size: get-vw-ms(15px);
+    letter-spacing: get-vw-ms(-0.3px);
+  }
+}
+
+.CreateAccountEnter_inputs {
+  display: flex;
+  flex-direction: column;
+  gap: get-vw(10px);
+  margin-top: get-vw(45px);
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(45px);
+  }
+}
+
+.CreateAccountEnter_inputBox {
+  display: flex;
+  align-items: center;
+  gap: get-vw(15px);
+  width: 100%;
+  padding: get-vw(15px) get-vw(20px);
+
+  border-radius: get-vw(80px);
+  background: rgba(255, 255, 255, 0.05);
+
+  transition: 0.2s ease-in-out;
+  transition-property: background;
+
+  @media (max-width: $mobile-s) {
+    padding: get-vw-ms(15px) get-vw-ms(20px);
+
+    border-radius: get-vw-ms(80px);
+  }
+}
+
+.CreateAccountEnter_input {
+  display: flex;
+  flex: 1 0 0;
+  font-size: get-vw(13px);
+
+  transition: 0.2s ease-in-out;
+  transition-property: color;
+
+  &::placeholder {
+    color: #ffffff5e;
+    font-family: inherit;
+    font-size: inherit;
+
+    transition: 0.2s ease-in-out;
+    transition-property: color;
+  }
+
+  &.error {
+    color: #8f0000;
+
+    &::placeholder {
+      color: #a50000a6;
+      font-family: inherit;
+      font-size: inherit;
+    }
+  }
+
+  @media (max-width: $mobile-s) {
+    font-size: get-vw-ms(13px);
+  }
+}
+
+.CreateAccountEnter_inputBox_icon {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: min-content;
+
+  & svg {
+    height: 100%;
+    width: auto;
+  }
+}
+
+.CreateAccountEnter_button {
+  width: 100%;
+  margin-top: get-vw(45px);
+  padding: get-vw(16px) get-vw(10px);
+
+  color: #000;
+  text-align: center;
+  font-size: get-vw(15px);
+  font-weight: 500;
+
+  border-radius: get-vw(70px);
+  background: #a0a0a0;
+
+  transition: 0.2s ease-in-out;
+  transition-property: background;
+
+  cursor: not-allowed;
+
+  &.active {
+    background: #fff;
+
+    cursor: pointer;
+  }
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(45px);
+    padding: get-vw-ms(16px) get-vw-ms(10px);
+
+    font-size: get-vw-ms(15px);
+
+    border-radius: get-vw-ms(70px);
+  }
+}

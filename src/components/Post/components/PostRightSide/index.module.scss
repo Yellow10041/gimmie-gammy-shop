@@ -1,0 +1,13 @@
+.PostRightSide {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: get-vw(15px);
+  width: min-content;
+
+  @media (max-width: $mobile-s) {
+    gap: get-vw-ms(15px);
+    padding: 0 0 get-vw-ms(20px) 0;
+  }
+}

@@ -1,0 +1,12 @@
+.Post {
+  display: flex;
+  justify-content: center;
+  gap: get-vw(20px);
+  height: 100%;
+  max-height: 85%;
+
+  margin-top: get-vw(35px);
+  padding-bottom: get-vw(35px);
+
+  border-bottom: get-vw(1px) solid rgba(255, 255, 255, 0.2);
+}

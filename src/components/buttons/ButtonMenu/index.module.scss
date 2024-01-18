@@ -1,0 +1,28 @@
+.ButtonMenu {
+  display: flex;
+  flex-direction: column;
+  gap: get-vw(4px);
+  width: min-content;
+  height: min-content;
+
+  transition: 0.2s ease-in-out;
+  transition-property: opacity;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.ButtonMenu_row {
+  display: flex;
+  gap: get-vw(4px);
+}
+
+.ButtonMenu_row_item {
+  width: get-vw(3px);
+  height: get-vw(3px);
+
+  background-color: #fff;
+
+  border-radius: 100%;
+}

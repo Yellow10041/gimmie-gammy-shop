@@ -1,0 +1,13 @@
+.CategoriesMobItem {
+  width: fit-content;
+
+  padding: get-vw-ms(10px) get-vw-ms(20px);
+
+  font-family: $fontPlusJakartaSans;
+  font-size: get-vw-ms(14px);
+  font-weight: 700;
+  white-space: nowrap;
+
+  border-radius: get-vw-ms(36px);
+  border: get-vw-ms(2px) solid rgba(255, 255, 255, 0.3);
+}

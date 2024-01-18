@@ -1,0 +1,44 @@
+.ButtonOrder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: get-vw(5px);
+  padding: get-vw(11px) get-vw(15px);
+
+  color: #000;
+  text-shadow: 0px get-vw(4px) get-vw(54px) rgba(0, 0, 0, 0.25);
+  font-family: $fontPlusJakartaSans;
+  font-size: get-vw(11px);
+  font-weight: 500;
+
+  border-radius: get-vw(49px);
+  background-color: #fff;
+  cursor: pointer;
+
+  transition: 0.2s linear;
+  transition-property: transform, background-color;
+
+  & svg {
+    height: get-vw(13px);
+    width: auto;
+  }
+
+  &:hover {
+    transform: scale(0.98);
+    background-color: #a8a8a8;
+  }
+
+  @media screen and (max-width: $mobile) {
+    gap: get-vw-ms(5px);
+    padding: get-vw-ms(16px) get-vw-ms(15px);
+
+    text-shadow: 0px get-vw-ms(4px) get-vw-ms(54px) rgba(0, 0, 0, 0.25);
+    font-size: get-vw-ms(17px);
+
+    border-radius: get-vw-ms(49px);
+
+    & svg {
+      height: get-vw-ms(20px);
+    }
+  }
+}

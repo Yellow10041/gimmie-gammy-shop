@@ -1,0 +1,7 @@
+.CategoriesMob {
+  display: flex;
+  overflow-x: scroll;
+  gap: get-vw-ms(10px);
+  width: 100%;
+  padding: get-vw-ms(15px) get-vw-ms(15px);
+}

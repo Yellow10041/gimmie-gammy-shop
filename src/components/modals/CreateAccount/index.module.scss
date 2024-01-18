@@ -1,0 +1,77 @@
+.CreateAccount {
+  display: inline-flex;
+  position: relative;
+  width: get-vw(480px);
+
+  opacity: 0;
+
+  @media (max-width: $mobile-s) {
+    width: 90%;
+  }
+}
+
+.CreateAccount_back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(255, 255, 255, 0.14);
+
+  border-radius: get-vw(40px);
+  backdrop-filter: blur(get-vw(35px));
+
+  @media (max-width: $mobile-s) {
+    border-radius: get-vw-ms(40px);
+  }
+}
+
+.CreateAccount_close {
+  position: absolute;
+  top: get-vw(22px);
+  right: get-vw(22px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: get-vw(32px);
+  height: get-vw(32px);
+
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+
+  cursor: pointer;
+  z-index: 100;
+
+  transition: 0.2s ease-in-out;
+  transition-property: background;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.24);
+  }
+
+  & svg {
+    width: 30%;
+    height: auto;
+  }
+
+  @media (max-width: $mobile-s) {
+    top: get-vw-ms(22px);
+    right: get-vw-ms(22px);
+    width: get-vw-ms(32px);
+    height: get-vw-ms(32px);
+  }
+}
+
+.CreateAccount_swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.CreateAccount_swiper_slide {
+  width: 100%;
+  height: 100%;
+  padding: get-vw(60px);
+
+  @media (max-width: $mobile-s) {
+    padding: get-vw-ms(60px) get-vw-ms(40px);
+  }
+}

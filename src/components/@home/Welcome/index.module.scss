@@ -1,0 +1,17 @@
+.Welcome {
+  display: flex;
+  flex-direction: column;
+  gap: get-vw(10px);
+}
+
+.Welcome_title {
+  font-family: $fontPlusJakartaSans;
+  font-size: get-vw(35px);
+  font-weight: 500;
+}
+
+.Welcome_subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: $fontPlusJakartaSans;
+  font-size: get-vw(16px);
+}

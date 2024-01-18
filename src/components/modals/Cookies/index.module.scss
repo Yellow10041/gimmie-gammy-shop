@@ -1,0 +1,139 @@
+.Cookies {
+  width: get-vw(460px);
+  padding: get-vw(35px) get-vw(60px);
+
+  opacity: 0;
+
+  @media (max-width: $mobile-s) {
+    width: 90%;
+    padding: get-vw-ms(35px) get-vw-ms(30px);
+  }
+}
+
+.Cookies_back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(255, 255, 255, 0.14);
+
+  border-radius: get-vw(40px);
+  backdrop-filter: blur(get-vw(35px));
+
+  @media (max-width: $mobile-s) {
+    border-radius: get-vw-ms(40px);
+  }
+}
+
+.Cookies_content {
+  position: relative;
+  z-index: 10;
+}
+
+.Cookies_icon {
+  display: flex;
+  justify-content: center;
+  height: get-vw(80px);
+
+  @media (max-width: $mobile-s) {
+    height: get-vw-ms(90px);
+  }
+
+  & svg {
+    height: 100%;
+    width: auto;
+  }
+}
+
+.Cookies_title {
+  margin-top: get-vw(30px);
+
+  color: #fff;
+  text-align: center;
+  font-family: $fontPoppins;
+  font-size: get-vw(32px);
+  font-weight: 500;
+  line-height: 105.7%; /* 33.824px */
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(20px);
+    font-size: get-vw-ms(28px);
+  }
+}
+
+.Cookies_subtitle {
+  margin-top: get-vw(15px);
+
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-family: $fontPoppins;
+  font-size: get-vw(14px);
+  letter-spacing: get-vw(-0.28px);
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(10px);
+    font-size: get-vw-ms(14px);
+  }
+}
+
+.Cookies_button_accept {
+  margin-top: get-vw(25px);
+
+  padding: get-vw(14px) get-vw(10px);
+
+  color: #000;
+  text-align: center;
+  font-size: get-vw(15px);
+  font-weight: 500;
+  letter-spacing: get-vw(-0.3px);
+
+  background: #fff;
+  border-radius: get-vw(70px);
+
+  cursor: pointer;
+
+  transition: 0.2s ease-in-out;
+  transition-property: background;
+
+  &:hover {
+    background: #ffffffb6;
+  }
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(30px);
+
+    padding: get-vw-ms(14px) get-vw-ms(10px);
+
+    font-size: get-vw-ms(15px);
+    letter-spacing: get-vw-ms(-0.3px);
+
+    border-radius: get-vw-ms(70px);
+  }
+}
+
+.Cookies_dontAllow {
+  margin-top: get-vw(25px);
+
+  color: #949494;
+  text-align: center;
+  font-family: $fontPoppins;
+  font-size: get-vw(15px);
+  font-weight: 500;
+  letter-spacing: get-vw(-0.3px);
+
+  cursor: pointer;
+
+  transition: 0.2s ease-in-out;
+  transition-property: color;
+
+  @media (max-width: $mobile-s) {
+    margin-top: get-vw-ms(25px);
+    font-size: get-vw-ms(15px);
+  }
+
+  &:hover {
+    color: #d8d8d8;
+  }
+}

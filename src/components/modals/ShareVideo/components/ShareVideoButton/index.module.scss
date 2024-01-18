@@ -1,0 +1,34 @@
+.ShareVideoButton {
+  width: 100%;
+  padding: get-vw(15px);
+
+  border: 1px solid #ffffff28;
+  border-radius: get-vw(50px);
+  // background-color: #ffffff21;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  color: #ffffff;
+  font-weight: 400;
+
+  transition: 0.2s ease-in-out;
+  transition-property: background-color;
+
+  & span {
+    text-transform: capitalize;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  &:hover {
+    background-color: #ffffff28;
+  }
+
+  @media (max-width: $mobile-s) {
+    padding: get-vw-ms(15px);
+
+    font-size: get-vw-ms(15px);
+
+    border-radius: get-vw-ms(50px);
+  }
+}

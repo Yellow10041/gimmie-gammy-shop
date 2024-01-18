@@ -1,0 +1,40 @@
+.ButtonMainNav {
+  display: flex;
+}
+
+.ButtonMainNavBox {
+  display: inline-flex;
+  align-items: center;
+  gap: get-vw(10px);
+  padding: get-vw(12px) get-vw(15px);
+
+  font-family: $fontPlusJakartaSans;
+  font-size: get-vw(15px);
+
+  border-radius: get-vw(50px);
+  background: rgba(255, 255, 255, 0.15);
+
+  opacity: 0.5;
+
+  transition: 0.2s ease-in-out;
+  transition-property: opacity;
+
+  & svg {
+    height: get-vw(20px);
+    width: auto;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.active {
+    font-weight: 500;
+
+    opacity: 1;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

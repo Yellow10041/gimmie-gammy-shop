@@ -1,0 +1,19 @@
+.HashtagsItem {
+  padding: get-vw(5px) get-vw(10px);
+
+  color: #fff;
+  font-family: $fontPlusJakartaSans;
+  font-size: get-vw(14px);
+
+  border-radius: get-vw(7px);
+  background: rgba(175, 175, 175, 0.3);
+  backdrop-filter: blur(5px);
+
+  @media screen and (max-width: $mobile) {
+    padding: get-vw-ms(5px) get-vw-ms(10px);
+
+    font-size: get-vw-ms(14px);
+
+    border-radius: get-vw-ms(7px);
+  }
+}
