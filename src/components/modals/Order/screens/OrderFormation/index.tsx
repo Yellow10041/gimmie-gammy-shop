@@ -122,12 +122,14 @@ export const OrderFormation: FC<IOrderFormation> = ({ selectOrder }) => {
           <Swiper {...swiperSettings} className={styles.OrderFormation_swiper}>
             <>
               {modalOrder?.data?.look.map((e: any, i: number) => (
-                <SwiperSlide className={styles.OrderFormation_swiper_slide}>
+                <SwiperSlide
+                  className={styles.OrderFormation_swiper_slide}
+                  key={i}
+                >
                   <OrderItem
                     look={e}
                     account={modalOrder.data.account}
                     forwardData={orderHandler}
-                    key={i}
                   />
                 </SwiperSlide>
               ))}
