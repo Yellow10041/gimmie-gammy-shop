@@ -53,15 +53,15 @@ const LayoutMain: React.FunctionComponent<ILayoutMainProps> = ({
 
   useLayoutEffect(() => {
     const updateWindowWidth = () => {
-      setWindowWidth(window.innerWidth);
+      setWindowWidth(window?.innerWidth);
     };
 
     updateWindowWidth();
 
-    window.addEventListener("resize", updateWindowWidth);
+    window?.addEventListener("resize", updateWindowWidth);
 
     return () => {
-      window.removeEventListener("resize", updateWindowWidth);
+      window?.removeEventListener("resize", updateWindowWidth);
     };
   });
 

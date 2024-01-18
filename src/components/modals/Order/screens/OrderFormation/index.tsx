@@ -4,7 +4,6 @@ import styles from "./index.module.scss";
 import { ButtonOrder } from "@/components/buttons/ButtonOrder";
 import { OrderItem } from "./ui/order-item";
 import { MainContext } from "@/providers/MainContext";
-import SendMessage from "@/utils/telegramSendMessage";
 import { ISwiper } from "@/types/Swiper.interface";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,7 +20,7 @@ export interface IForwardData {
 }
 
 export const OrderFormation: FC<IOrderFormation> = ({ selectOrder }) => {
-  const { modalOrder, device, buttonTrigger } = useContext(MainContext);
+  const { modalOrder } = useContext(MainContext);
 
   const [orderData, setOrderData] = useState<IForwardData[]>([]);
   const totalPrice = useMemo(() => {
