@@ -20,7 +20,7 @@ export interface IForwardData {
 }
 
 export const OrderFormation: FC<IOrderFormation> = ({ selectOrder }) => {
-  const { modalOrder } = useContext(MainContext);
+  const { modalOrder, windowWidth } = useContext(MainContext);
 
   const [orderData, setOrderData] = useState<IForwardData[]>([]);
   const totalPrice = useMemo(() => {
@@ -106,7 +106,7 @@ export const OrderFormation: FC<IOrderFormation> = ({ selectOrder }) => {
     <div className={clsx(styles.OrderFormation)}>
       <div className={clsx(styles.OrderFormation_title)}>Select your size</div>
       <div className={clsx(styles.OrderFormation_look)}>
-        {window?.innerWidth > 1024 ? (
+        {windowWidth > 1024 ? (
           <>
             {modalOrder?.data?.look.map((e: any, i: number) => (
               <OrderItem
