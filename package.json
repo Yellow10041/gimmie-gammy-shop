@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.40",
+    "@uidotdev/usehooks": "^2.4.1",
     "axios": "^1.6.5",
     "clsx": "^2.0.0",
     "gsap": "^3.12.2",
@@ -17,6 +18,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",
+    "react-select": "^5.8.0",
+    "react-select-country-list": "^2.2.3",
     "sass": "^1.69.5",
     "swiper": "^11.0.3"
   },
@@ -25,6 +28,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-select-country-list": "^2.2.3",
     "eslint": "^8",
     "eslint-config-next": "14.0.1",
     "typescript": "^5"

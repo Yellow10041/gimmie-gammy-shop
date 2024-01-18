@@ -1,20 +1,32 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
 import styles from "./index.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Select, SelectItem } from "./ui/select";
+import countryList from "react-select-country-list";
 
 interface IOrderDetails {
   selectAddress: any;
+  // isActive:
 }
 
 interface IOrderDetailsInputs {
   name: string;
   email: string;
   address: string;
+  phone: string;
 }
 
 export const OrderDetails: FC<IOrderDetails> = ({ selectAddress }) => {
   const [isButtonActive, setButtonActive] = useState<boolean>(false);
+  const [country, setCountry] = useState<string>("");
+  const [selectClearTrigger, setSelectClearTrigger] = useState<boolean>(false);
+
+  const options = useMemo(() => countryList().getData(), []);
+
+  const changeDataType = (data: string) => {
+    setCountry(data);
+  };
 
   const { register, handleSubmit, reset, watch } = useForm<IOrderDetailsInputs>(
     {
@@ -25,11 +37,14 @@ export const OrderDetails: FC<IOrderDetails> = ({ selectAddress }) => {
   const watchAllFields = watch();
 
   const onSubmit: SubmitHandler<IOrderDetailsInputs> = async (data) => {
+    setSelectClearTrigger((prev) => !prev);
+
     let resMas: any = {};
 
     Object.entries(data).map((data) => {
       resMas = {
         ...resMas,
+        "country: ": country,
         [`${data[0]}: `]: data[1],
       };
     });
@@ -76,6 +91,19 @@ export const OrderDetails: FC<IOrderDetails> = ({ selectAddress }) => {
               placeholder="Your Email"
             />
           </div>
+          <Select
+            onDataChange={changeDataType}
+            clearTrigger={selectClearTrigger}
+            items={[...options]}
+          />
+          <input
+            className={clsx(styles.OrderDetails_form_input)}
+            {...register("phone", {
+              required: "Phone Number is required",
+            })}
+            type="text"
+            placeholder="Your Phone Number"
+          />
           <input
             className={clsx(styles.OrderDetails_form_input)}
             {...register("address", {
