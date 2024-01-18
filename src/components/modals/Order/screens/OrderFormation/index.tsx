@@ -107,7 +107,7 @@ export const OrderFormation: FC<IOrderFormation> = ({ selectOrder }) => {
     <div className={clsx(styles.OrderFormation)}>
       <div className={clsx(styles.OrderFormation_title)}>Select your size</div>
       <div className={clsx(styles.OrderFormation_look)}>
-        {window.innerWidth > 1024 ? (
+        {window?.innerWidth > 1024 ? (
           <>
             {modalOrder?.data?.look.map((e: any, i: number) => (
               <OrderItem
