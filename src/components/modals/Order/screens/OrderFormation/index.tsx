@@ -7,6 +7,7 @@ import { MainContext } from "@/providers/MainContext";
 import { ISwiper } from "@/types/Swiper.interface";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { IPostClothes } from "@/types/post";
 
 interface IOrderFormation {
   selectOrder: any;
@@ -52,14 +53,9 @@ export const OrderFormation: FC<IOrderFormation> = ({ selectOrder }) => {
 
   const orderHandler = (data: IForwardData) => {
     if (data.itemSize) {
-      setOrderData((prev) => [
-        ...prev.filter((item) => item.itemName != data.itemName),
-        data,
-      ]);
+      setOrderData((prev) => [...prev.filter((item) => item.itemName != data.itemName), data]);
     } else {
-      setOrderData((prev) => [
-        ...prev.filter((item) => item.itemName != data.itemName),
-      ]);
+      setOrderData((prev) => [...prev.filter((item) => item.itemName != data.itemName)]);
     }
   };
 
@@ -85,10 +81,10 @@ export const OrderFormation: FC<IOrderFormation> = ({ selectOrder }) => {
 
   const [swiper, setSwiper] = useState<ISwiper>();
   const swiperSettings = {
-    autoHeight: true,
+    // autoHeight: true,
     modules: [],
-    slidesPerView: 1,
-    centeredSlides: true,
+    slidesPerView: windowWidth > 1024 ? 2 : 1.3,
+    // centeredSlides: windowWidth > 1024 ? false : true,
     spaceBetween: 10,
     speed: 500,
     allowTouchMove: true,
@@ -106,46 +102,19 @@ export const OrderFormation: FC<IOrderFormation> = ({ selectOrder }) => {
     <div className={clsx(styles.OrderFormation)}>
       <div className={clsx(styles.OrderFormation_title)}>Select your size</div>
       <div className={clsx(styles.OrderFormation_look)}>
-        {windowWidth > 1024 ? (
+        <Swiper {...swiperSettings} className={styles.OrderFormation_swiper}>
           <>
-            {modalOrder?.data?.look.map((e: any, i: number) => (
-              <OrderItem
-                look={e}
-                account={modalOrder.data.account}
-                forwardData={orderHandler}
-                key={i}
-              />
+            {modalOrder?.data?.clothes.map((clothes: IPostClothes, i: number) => (
+              <SwiperSlide className={styles.OrderFormation_swiper_slide} key={i}>
+                <OrderItem clothes={clothes} brand={modalOrder.data.brand} forwardData={orderHandler} />
+              </SwiperSlide>
             ))}
           </>
-        ) : (
-          <Swiper {...swiperSettings} className={styles.OrderFormation_swiper}>
-            <>
-              {modalOrder?.data?.look.map((e: any, i: number) => (
-                <SwiperSlide
-                  className={styles.OrderFormation_swiper_slide}
-                  key={i}
-                >
-                  <OrderItem
-                    look={e}
-                    account={modalOrder.data.account}
-                    forwardData={orderHandler}
-                  />
-                </SwiperSlide>
-              ))}
-            </>
-          </Swiper>
-        )}
+        </Swiper>
       </div>
       <div className={clsx(styles.OrderFormation_footer)}>
-        <div className={clsx(styles.OrderFormation_price)}>
-          Total: ${renderTextProgress(totalPrice.toString())}
-        </div>
-        <div
-          className={clsx(
-            styles.OrderFormation_payment,
-            totalPrice == 0 && styles.disable
-          )}
-        >
+        <div className={clsx(styles.OrderFormation_price)}>Total: ${renderTextProgress(totalPrice.toString())}</div>
+        <div className={clsx(styles.OrderFormation_payment, totalPrice == 0 && styles.disable)}>
           <ButtonOrder onClick={handle}>Proceed to payment</ButtonOrder>
         </div>
       </div>

@@ -17,12 +17,8 @@ interface PostRightSideProps {
   statistic: IPostStatistic;
 }
 
-const PostRightSide: React.FunctionComponent<PostRightSideProps> = ({
-  statistic,
-  id,
-}) => {
-  const { modalShareVideo, modalEmail, setButtonTrigger } =
-    useContext(MainContext);
+const PostRightSide: React.FunctionComponent<PostRightSideProps> = ({ statistic, id }) => {
+  const { modalShareVideo, modalEmail, setButtonTrigger } = useContext(MainContext);
 
   const HandleButtonComment = () => {
     setButtonTrigger("Comment");
@@ -37,11 +33,7 @@ const PostRightSide: React.FunctionComponent<PostRightSideProps> = ({
   return (
     <div className={clsx(styles.PostRightSide)}>
       <ButtonPostStat icon={<IconLike />} value={statistic.likes} like />
-      <ButtonPostStat
-        icon={<IconComments />}
-        value={statistic.comments}
-        onClick={HandleButtonComment}
-      />
+      <ButtonPostStat icon={<IconComments />} value={statistic.comments} onClick={HandleButtonComment} />
       {/* <ButtonPostStat
         icon={<IconSent />}
         value={statistic.repost}

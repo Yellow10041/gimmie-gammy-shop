@@ -10,15 +10,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import CategoriesMob from "@/components/CategoriesMob";
 import PostMob from "@/components/PostMob";
-import { IPost } from "@/types/Post.interface";
 import gsap from "gsap";
+import { IPost } from "@/types/post";
+import { getMediaPath } from "@/utils/getMediaPath";
 
-interface IHomeContentMobProps {}
+interface IHomeContentMobProps {
+  posts: IPost[];
+}
 
-const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = (
-  props
-) => {
-  const { posts, load, modalCreateAccount } = useContext(MainContext);
+const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }) => {
+  const { load, modalCreateAccount } = useContext(MainContext);
 
   const [swiper, setSwiper] = useState<ISwiper>();
   // const [getPost, setGetPost] = useState<number>(3);
@@ -101,19 +102,15 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = (
 
   return (
     <div className={clsx(styles.HomeContentMob)}>
-      <div
-        className={clsx(styles.HomeContentMob_unmute)}
-        ref={refPlay}
-        onClick={() => Animation()}
-      >
+      <div className={clsx(styles.HomeContentMob_unmute)} ref={refPlay} onClick={() => Animation()}>
         Unmute
       </div>
       <video
         className={clsx(
-          styles.HomeContentMob_videoPlayer,
-          posts[activeIndex] == "h" && styles.contain
+          styles.HomeContentMob_videoPlayer
+          // posts[activeIndex] == "h" && styles.contain
         )}
-        src={posts[activeIndex]?.videoSrc}
+        src={getMediaPath(posts[activeIndex].attributes.video)}
         preload="auto"
         playsInline
         loop
@@ -150,9 +147,9 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = (
           refVideoPlayer.current?.play();
         }}
       >
-        {posts.map((e: IPost, i: number) => (
+        {posts.map((posts: IPost, i: number) => (
           <SwiperSlide className={styles.HomeContentMob_swiper_item} key={i}>
-            <PostMob isStable={isStable} {...e} />
+            <PostMob isStable={isStable} {...posts} />
           </SwiperSlide>
         ))}
       </Swiper>

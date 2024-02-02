@@ -10,9 +10,10 @@
   },
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.40",
+    "@strapi/blocks-react-renderer": "^1.0.0",
     "@uidotdev/usehooks": "^2.4.1",
     "axios": "^1.6.5",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.0",
     "gsap": "^3.12.2",
     "next": "14.0.1",
     "react": "^18",

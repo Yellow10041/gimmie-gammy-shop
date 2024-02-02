@@ -4,13 +4,11 @@ interface MessageObject {
 
 const Request = async (message: string) => {
   const botToken = "6669303780:AAElU-RScmnfqZ2sHgS5dNORz01ANzA6j4Y";
-  const botChatId = "-4198836116";
+  const botChatId = "-1001918368698";
 
   let responseMessage: boolean = false;
 
-  await fetch(
-    `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${botChatId}&parse_mode=html&text=${message}&disable_web_page_preview=true`
-  ).then((response) => {
+  await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${botChatId}&parse_mode=html&text=${message}&disable_web_page_preview=true`).then((response) => {
     if (response.ok) {
       responseMessage = true;
     } else {

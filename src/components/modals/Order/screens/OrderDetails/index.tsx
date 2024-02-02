@@ -2,7 +2,7 @@ import { FC, useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
 import styles from "./index.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Select, SelectItem } from "./ui/select";
+import { Select } from "./ui/select";
 import countryList from "react-select-country-list";
 
 interface IOrderDetails {
@@ -28,11 +28,9 @@ export const OrderDetails: FC<IOrderDetails> = ({ selectAddress }) => {
     setCountry(data);
   };
 
-  const { register, handleSubmit, reset, watch } = useForm<IOrderDetailsInputs>(
-    {
-      mode: "onChange",
-    }
-  );
+  const { register, handleSubmit, reset, watch } = useForm<IOrderDetailsInputs>({
+    mode: "onChange",
+  });
 
   const watchAllFields = watch();
 
@@ -65,13 +63,8 @@ export const OrderDetails: FC<IOrderDetails> = ({ selectAddress }) => {
 
   return (
     <div className={clsx(styles.OrderDetails)}>
-      <div className={clsx(styles.OrderDetails_title)}>
-        please fill in the details of where to send your order
-      </div>
-      <form
-        className={clsx(styles.OrderDetails_form)}
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <div className={clsx(styles.OrderDetails_title)}>please fill in the details of where to send your order</div>
+      <form className={clsx(styles.OrderDetails_form)} onSubmit={handleSubmit(onSubmit)}>
         <div className={clsx(styles.OrderDetails_form_inputs)}>
           <div className={clsx(styles.OrderDetails_form_inputs_box)}>
             <input
@@ -91,11 +84,7 @@ export const OrderDetails: FC<IOrderDetails> = ({ selectAddress }) => {
               placeholder="Your Email"
             />
           </div>
-          <Select
-            onDataChange={changeDataType}
-            clearTrigger={selectClearTrigger}
-            items={[...options]}
-          />
+          <Select onDataChange={changeDataType} clearTrigger={selectClearTrigger} items={[...options]} />
           <input
             className={clsx(styles.OrderDetails_form_input)}
             {...register("phone", {
@@ -113,14 +102,7 @@ export const OrderDetails: FC<IOrderDetails> = ({ selectAddress }) => {
             placeholder="Your Address"
           />
         </div>
-        <button
-          className={clsx(
-            styles.OrderDetails_button,
-            !isButtonActive && styles.disable
-          )}
-        >
-          Create Order
-        </button>
+        <button className={clsx(styles.OrderDetails_button, !isButtonActive && styles.disable)}>Create Order</button>
       </form>
     </div>
   );

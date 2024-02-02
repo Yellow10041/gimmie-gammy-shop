@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  width: 100%;
 
   @media screen and (max-width: $tablet) {
     width: 100%;
@@ -93,7 +94,8 @@
 }
 
 .OrderFormation_swiper {
-  width: 85%;
+  width: 100%;
+  // height: get-vw(400px);
 
   overflow: visible;
   margin: unset;
@@ -101,5 +103,5 @@
 
 .OrderFormation_swiper_slide {
   width: 100%;
-  height: 100px;
+  height: fit-content;
 }

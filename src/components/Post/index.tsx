@@ -3,18 +3,18 @@ import styles from "./index.module.scss";
 
 import PostRightSide from "./components/PostRightSide";
 import PostContent from "./components/PostContent";
-import { IPost } from "@/types/Post.interface";
+import { IPost } from "@/types/post";
 
 interface IPostProps {
   index: number;
-  postData: IPost;
+  post: IPost;
 }
 
-const Post: React.FunctionComponent<IPostProps> = ({ postData, index }) => {
+const Post: React.FunctionComponent<IPostProps> = ({ post, index }) => {
   return (
     <div className={clsx(styles.Post)}>
-      <PostContent {...postData} index={index} />
-      <PostRightSide id={postData.id} statistic={postData.statistic} />
+      <PostContent {...post} index={index} />
+      {/* <PostRightSide id={postData.id} statistic={postData.statistic} /> */}
     </div>
   );
 };

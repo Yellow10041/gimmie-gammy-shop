@@ -1,27 +1,19 @@
 import clsx from "clsx";
 import styles from "./index.module.scss";
 
-import {
-  useLayoutEffect,
-  useRef,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { useLayoutEffect, useRef, useContext, useEffect, useState } from "react";
 import { MainContext } from "@/providers/MainContext";
-
-import { IPost } from "@/types/Post.interface";
 
 import Welcome from "@/components/@home/Welcome";
 import Post from "@/components/Post";
+import { IPost } from "@/types/post";
 
-interface IHomeContentDeskProps {}
+interface IHomeContentDeskProps {
+  posts: IPost[];
+}
 
-const HomeContentDesk: React.FunctionComponent<IHomeContentDeskProps> = (
-  props
-) => {
-  const { modalFullScreenVideo, posts, load, modalCreateAccount } =
-    useContext(MainContext);
+const HomeContentDesk: React.FunctionComponent<IHomeContentDeskProps> = ({ posts }) => {
+  const { modalFullScreenVideo, load, modalCreateAccount } = useContext(MainContext);
 
   const [activePost, setActivePost] = useState<number>(0);
   const [getPost, setGetPost] = useState<number>(3);
@@ -39,10 +31,10 @@ const HomeContentDesk: React.FunctionComponent<IHomeContentDeskProps> = (
   const SetSettingsOnVideos = () => {
     let videos = document.getElementsByTagName("video");
     let videoArray = Array.from(videos) as HTMLVideoElement[];
-    videoArray = videoArray.filter((video) =>
-      video.classList.contains("videoList")
-    );
+    videoArray = videoArray.filter((video) => video.classList.contains("videoList"));
+
     console.log(videoArray[0]);
+
     videoArray.map((video) => {
       video.volume = 0.3;
       video.pause();
@@ -54,9 +46,7 @@ const HomeContentDesk: React.FunctionComponent<IHomeContentDeskProps> = (
 
     let videos = document.getElementsByTagName("video");
     let videoArray = Array.from(videos) as HTMLVideoElement[];
-    videoArray = videoArray.filter((video) =>
-      video.classList.contains("videoList")
-    );
+    videoArray = videoArray.filter((video) => video.classList.contains("videoList"));
 
     let distanceToTop: Array<[number, HTMLVideoElement]> = [];
 
@@ -71,7 +61,6 @@ const HomeContentDesk: React.FunctionComponent<IHomeContentDeskProps> = (
 
     let newActiveIndex = Number(distanceToTop[0][1].dataset.index);
 
-    console.log(newActiveIndex, activePost);
     if (newActiveIndex != activePost) {
       distanceToTop = distanceToTop.slice(1, distanceToTop.length);
       distanceToTop.map((video) => {
@@ -84,8 +73,7 @@ const HomeContentDesk: React.FunctionComponent<IHomeContentDeskProps> = (
   useLayoutEffect(() => {
     if (refScrollContent.current) {
       refScrollContent.current.addEventListener("scroll", HandleScroll);
-      return () =>
-        refScrollContent.current?.removeEventListener("scroll", HandleScroll);
+      return () => refScrollContent.current?.removeEventListener("scroll", HandleScroll);
     }
   }, []);
 
@@ -95,9 +83,7 @@ const HomeContentDesk: React.FunctionComponent<IHomeContentDeskProps> = (
     let inter = setInterval(() => {
       let videos = document.getElementsByTagName("video");
       let videoArray = Array.from(videos) as HTMLVideoElement[];
-      videoArray = videoArray.filter((video) =>
-        video.classList.contains("videoList")
-      );
+      videoArray = videoArray.filter((video) => video.classList.contains("videoList"));
       videoArray[0]?.play();
       if (videoArray[0]?.currentTime > 0) {
         clearInterval(inter);
@@ -121,25 +107,15 @@ const HomeContentDesk: React.FunctionComponent<IHomeContentDeskProps> = (
     let videos = document.getElementsByTagName("video");
     let videoArray = Array.from(videos) as HTMLVideoElement[];
 
-    let videoActive = videoArray.filter(
-      (video) =>
-        video.classList.contains("videoList") &&
-        Number(video.dataset.index) == activePost
-    )[0];
+    let videoActive = videoArray.filter((video) => video.classList.contains("videoList") && Number(video.dataset.index) == activePost)[0];
 
-    videoArray = videoArray.filter(
-      (video) =>
-        video.classList.contains("videoList") &&
-        Number(video.dataset.index) != activePost
-    );
+    videoArray = videoArray.filter((video) => video.classList.contains("videoList") && Number(video.dataset.index) != activePost);
 
     if (videoActive) {
       if (videoActive.dataset.pause == "false") {
-        console.log("play");
         videoActive.play();
         videoActive.volume = 0.3;
       } else {
-        console.log("pause");
       }
       videoArray.map((video) => {
         video.pause();
@@ -155,7 +131,7 @@ const HomeContentDesk: React.FunctionComponent<IHomeContentDeskProps> = (
     <div className={clsx(styles.HomeContentDesk)} ref={refScrollContent}>
       <Welcome />
       {posts.slice(0, getPost).map((e: IPost, i: number) => (
-        <Post postData={e} index={i} key={i} />
+        <Post post={e} index={i} key={i} />
       ))}
     </div>
   );
