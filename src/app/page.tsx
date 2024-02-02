@@ -10,9 +10,7 @@ async function getData() {
 const Home = async () => {
   const data = await getData();
 
-  console.log(data.posts.data[0].attributes.video.data.attributes.url);
-
-  return <HomeContent posts={data.posts.data} />;
+  return <>{data.posts.data[0] ? <HomeContent posts={data.posts.data} /> : <>DB connection error</>}</>;
 };
 
 export default Home;

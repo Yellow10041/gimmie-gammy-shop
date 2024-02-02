@@ -6,7 +6,7 @@ export const PostService = {
   async getAll() {
     const response = await instance.get<IPostsResponse>(`${API_URL}/posts`);
 
-    return response.data;
+    return response.data || {};
   },
 
   // async getBySlugOrId(slugOrId: string) {

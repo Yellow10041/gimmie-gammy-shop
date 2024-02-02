@@ -33,9 +33,7 @@ interface ILayoutMainProps {
   children: React.ReactNode;
 }
 
-const LayoutMain: React.FunctionComponent<ILayoutMainProps> = ({
-  children,
-}) => {
+const LayoutMain: React.FunctionComponent<ILayoutMainProps> = ({ children }) => {
   const [load, setLoad] = useState<boolean>(false);
   const [videoID, setVideoID] = useState<number>(-2);
   const [windowWidth, setWindowWidth] = useState<number>(2000);
@@ -82,7 +80,7 @@ const LayoutMain: React.FunctionComponent<ILayoutMainProps> = ({
 
       postID = dataPosts.find((post) => post.id == videoID) as IPost;
 
-      console.log(dataPosts.find((post) => post.id == videoID));
+      // console.log(dataPosts.find((post) => post.id == videoID));
 
       if (windowWidth > 1025) {
         postData.push(...filterPostData("h"));
@@ -96,7 +94,7 @@ const LayoutMain: React.FunctionComponent<ILayoutMainProps> = ({
         postData.unshift(postID);
       }
 
-      console.log(postData);
+      // console.log(postData);
 
       setPosts(postData);
     }
