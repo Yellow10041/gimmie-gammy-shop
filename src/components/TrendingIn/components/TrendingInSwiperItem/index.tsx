@@ -12,9 +12,7 @@ interface ITrendingInSwiperItemProps {
   nickname: string;
 }
 
-const TrendingInSwiperItem: React.FunctionComponent<
-  ITrendingInSwiperItemProps
-> = ({ avatar, nickname }) => {
+const TrendingInSwiperItem: React.FunctionComponent<ITrendingInSwiperItemProps> = ({ avatar, nickname }) => {
   const refNicknameBox = useRef<HTMLDivElement>(null);
   const refNickname = useRef<HTMLDivElement>(null);
   const [tl2, setTl2] = useState<gsap.core.Timeline>();
@@ -24,7 +22,6 @@ const TrendingInSwiperItem: React.FunctionComponent<
   };
 
   const onMouseEnter = () => {
-    console.log;
     tl2?.resume();
   };
 
@@ -81,29 +78,12 @@ const TrendingInSwiperItem: React.FunctionComponent<
   }, []);
 
   return (
-    <div
-      className={clsx(styles.TrendingInSwiperItem)}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
-      <Image
-        className={styles.TrendingInSwiperItem_avatar}
-        src={avatar}
-        alt="avatar"
-        width={100}
-        height={100}
-        quality={100}
-      />
-      <div
-        className={clsx(styles.TrendingInSwiperItem_nicknameBox)}
-        ref={refNicknameBox}
-      >
+    <div className={clsx(styles.TrendingInSwiperItem)} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+      <Image className={styles.TrendingInSwiperItem_avatar} src={avatar} alt="avatar" width={100} height={100} quality={100} />
+      <div className={clsx(styles.TrendingInSwiperItem_nicknameBox)} ref={refNicknameBox}>
         <div className={clsx(styles.TrendingInSwiperItem_nicknameBox_inner)}>
           {nickname}
-          <div
-            className={clsx(styles.TrendingInSwiperItem_nickname)}
-            ref={refNickname}
-          >
+          <div className={clsx(styles.TrendingInSwiperItem_nickname)} ref={refNickname}>
             {nickname}
           </div>
         </div>

@@ -13,9 +13,7 @@ interface ICreateAccountEnterProps {
   func: () => void;
 }
 
-const CreateAccountEnter: React.FunctionComponent<ICreateAccountEnterProps> = ({
-  func,
-}) => {
+const CreateAccountEnter: React.FunctionComponent<ICreateAccountEnterProps> = ({ func }) => {
   const { modalCreateAccount, device, buttonTrigger } = useContext(MainContext);
 
   const [inputEmailValue, setInputEmailValue] = useState<string>("");
@@ -35,7 +33,7 @@ const CreateAccountEnter: React.FunctionComponent<ICreateAccountEnterProps> = ({
 
     let response = await SendMessage(resMas);
 
-    console.log(response);
+    // console.log(response);
     response && func();
   };
 
@@ -69,13 +67,8 @@ const CreateAccountEnter: React.FunctionComponent<ICreateAccountEnterProps> = ({
 
   return (
     <div className={clsx(styles.CreateAccountEnter)}>
-      <div className={clsx(styles.CreateAccountEnter_header)}>
-        Let&apos;s create Something Cool!
-      </div>
-      <div className={clsx(styles.CreateAccountEnter_description)}>
-        Please enter your email and password, we’ll send a link to access your
-        account.
-      </div>
+      <div className={clsx(styles.CreateAccountEnter_header)}>Let&apos;s create Something Cool!</div>
+      <div className={clsx(styles.CreateAccountEnter_description)}>Please enter your email and password, we’ll send a link to access your account.</div>
       <div className={clsx(styles.CreateAccountEnter_inputs)}>
         <div className={clsx(styles.CreateAccountEnter_inputBox)}>
           <input
@@ -104,20 +97,14 @@ const CreateAccountEnter: React.FunctionComponent<ICreateAccountEnterProps> = ({
             }}
             ref={refPassword}
           />
-          <div
-            className={clsx(styles.CreateAccountEnter_inputBox_icon)}
-            onClick={ViewPassword}
-          >
+          <div className={clsx(styles.CreateAccountEnter_inputBox_icon)} onClick={ViewPassword}>
             <IconEyeClose />
           </div>
         </div>
 
         <div className={clsx(styles.CreateAccountEnter_inputBox)}>
           <input
-            className={clsx(
-              styles.CreateAccountEnter_input,
-              inputPassValue != inputPassReValue && styles.error
-            )}
+            className={clsx(styles.CreateAccountEnter_input, inputPassValue != inputPassReValue && styles.error)}
             type="password"
             name="password"
             placeholder="reenter the password"
@@ -127,25 +114,13 @@ const CreateAccountEnter: React.FunctionComponent<ICreateAccountEnterProps> = ({
             }}
             ref={refPasswordReenter}
           />
-          <div
-            className={clsx(styles.CreateAccountEnter_inputBox_icon)}
-            onClick={ViewPasswordReenter}
-          >
+          <div className={clsx(styles.CreateAccountEnter_inputBox_icon)} onClick={ViewPasswordReenter}>
             <IconEyeClose />
           </div>
         </div>
       </div>
 
-      <div
-        className={clsx(
-          styles.CreateAccountEnter_button,
-          inputEmailValue &&
-            inputPassValue &&
-            inputPassValue == inputPassReValue &&
-            styles.active
-        )}
-        onClick={HandleButton}
-      >
+      <div className={clsx(styles.CreateAccountEnter_button, inputEmailValue && inputPassValue && inputPassValue == inputPassReValue && styles.active)} onClick={HandleButton}>
         Create Account
       </div>
     </div>

@@ -33,7 +33,7 @@ const HomeContentDesk: React.FunctionComponent<IHomeContentDeskProps> = ({ posts
     let videoArray = Array.from(videos) as HTMLVideoElement[];
     videoArray = videoArray.filter((video) => video.classList.contains("videoList"));
 
-    console.log(videoArray[0]);
+    // console.log(videoArray[0]);
 
     videoArray.map((video) => {
       video.volume = 0.3;
