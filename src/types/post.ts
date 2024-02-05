@@ -6,6 +6,11 @@ export interface IPostClothesSize extends BaseFields {
   available: boolean;
 }
 
+export interface IPostHashtag extends BaseFields {
+  id: number;
+  title: string;
+}
+
 export interface IPostClothes extends BaseFields {
   image: IFileObject;
   title: string;
@@ -18,7 +23,9 @@ export interface IPostAttributes extends BaseFields {
   video: IFileObject;
   brand: IBrand;
   clothes: IPostClothes[];
+  hashtags: IPostHashtag[];
 }
+
 export interface IPost extends BaseFields {
   attributes: IPostAttributes;
 }

@@ -60,17 +60,19 @@ const PostMob: React.FunctionComponent<IPostMobProps> = ({ id, attributes, isSta
                   <IconVerify />
                 </div>
                 <div className={clsx(styles.PostMob_info_detail_account_info)}>
-                  <div className={clsx(styles.PostMob_info_detail_account_info_name)}>{`@${attributes.brand.data.attributes.logo}`}</div>
+                  <div className={clsx(styles.PostMob_info_detail_account_info_name)}>{`@${attributes.brand.data.attributes.title}`}</div>
                   <div className={clsx(styles.PostMob_info_detail_account_info_dataPosted)}>yesterday</div>
                 </div>
               </div>
             )}
             <div className={clsx(styles.PostMob_info_detail_description)}>Buy and get access to the moment </div>
-            <div className={clsx(styles.PostMob_info_detail_tags)}>
-              <Hashtags />
-            </div>
+            {attributes.hashtags && attributes.hashtags.length > 0 && (
+              <div className={clsx(styles.PostMob_info_detail_tags)}>
+                <Hashtags items={attributes.hashtags} />
+              </div>
+            )}
           </div>
-          {/* <PostRightSide id={id} statistic={statistic} /> */}
+          <PostRightSide id={id} />
         </div>
         <ButtonOrder onClick={HandleOrder}>Order Now</ButtonOrder>
       </div>

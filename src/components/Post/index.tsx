@@ -14,7 +14,7 @@ const Post: React.FunctionComponent<IPostProps> = ({ post, index }) => {
   return (
     <div className={clsx(styles.Post)}>
       <PostContent {...post} index={index} />
-      {/* <PostRightSide id={postData.id} statistic={postData.statistic} /> */}
+      <PostRightSide id={post.id} />
     </div>
   );
 };

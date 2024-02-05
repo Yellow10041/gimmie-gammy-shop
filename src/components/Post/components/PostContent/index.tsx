@@ -118,7 +118,7 @@ const PostContent: React.FunctionComponent<IPostContentProps> = ({ id, attribute
                 <IconVerify />
               </div>
               <div className={clsx(styles.PostContent_info_header_account_info)}>
-                <div className={clsx(styles.PostContent_info_header_account_info_name)}>{`@${attributes.brand.data.attributes.title}`}</div>
+                <div className={clsx(styles.PostContent_info_header_account_info_name)}>@{attributes.brand.data.attributes.title}</div>
                 <div className={clsx(styles.PostContent_info_header_account_info_dataPosted)}>yesterday</div>
               </div>
             </div>
@@ -126,7 +126,7 @@ const PostContent: React.FunctionComponent<IPostContentProps> = ({ id, attribute
           <ButtonOrder onClick={HandleOrder}>Order Now</ButtonOrder>
         </div>
         {attributes?.title && <div className={clsx(styles.PostContent_info_description)}>{attributes.title}</div>}
-        <Hashtags />
+        {attributes?.hashtags?.length > 0 && <Hashtags items={attributes.hashtags} />}
       </div>
       <div className={clsx(styles.PostContent_pause)} ref={refButtonPause}>
         <IconPause />

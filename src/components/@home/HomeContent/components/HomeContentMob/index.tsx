@@ -123,9 +123,9 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         }}
         ref={refVideoPlayer}
       />
-      <div className={clsx(styles.HomeContentMob_categories)}>
+      {/* <div className={clsx(styles.HomeContentMob_categories)}>
         <CategoriesMob />
-      </div>
+      </div> */}
       <Swiper
         {...swiperSettings}
         direction="vertical"
