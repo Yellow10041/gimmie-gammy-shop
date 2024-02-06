@@ -135,28 +135,28 @@ const LayoutMain: React.FunctionComponent<ILayoutMainProps> = ({ children }) => 
         <IconLogo />
       </div>
       <div className={clsx(styles.LayoutMain, load && styles.load)}>
-        <Modal isActive={modalBurger.isActive}>
+        <Modal modal={modalBurger}>
           <Burger />
         </Modal>
-        <Modal isActive={modalFullScreenVideo.isActive}>
+        <Modal modal={modalFullScreenVideo}>
           <FullScreenVideo />
         </Modal>
-        <Modal isActive={modalEmail.isActive}>
+        <Modal modal={modalEmail}>
           <Email />
         </Modal>
-        <Modal isActive={modalCreateAccount.isActive}>
+        <Modal modal={modalCreateAccount}>
           <CreateAccount />
         </Modal>
-        <Modal isActive={modalShareVideo.isActive}>
+        <Modal modal={modalShareVideo}>
           <ShareVideo />
         </Modal>
-        <Modal isActive={modalOrder.isActive}>
+        <Modal modal={modalOrder}>
           <Order />
         </Modal>
 
         {windowWidth > 1025 ? (
           <>
-            <Modal isActive={modalCookies.isActive}>
+            <Modal modal={modalCookies}>
               <Cookies />
             </Modal>
             <MainDesk>{children}</MainDesk>

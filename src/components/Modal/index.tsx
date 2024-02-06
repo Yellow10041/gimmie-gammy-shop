@@ -7,14 +7,11 @@ import { setTimeout } from "timers";
 
 interface IModalProps {
   children: React.ReactNode;
-  isActive: boolean;
+  modal: any;
 }
 
-const Modal: React.FunctionComponent<IModalProps> = ({
-  isActive,
-  children,
-}) => {
-  const [activePrev, setActivePrev] = useState<boolean>(isActive);
+const Modal: React.FunctionComponent<IModalProps> = ({ modal, children }) => {
+  const [activePrev, setActivePrev] = useState<boolean>(modal.isActive);
 
   const refModal = useRef<HTMLDivElement>(null);
   const refModalBack = useRef<HTMLDivElement>(null);
@@ -57,15 +54,15 @@ const Modal: React.FunctionComponent<IModalProps> = ({
   };
 
   useEffect(() => {
-    if (isActive != activePrev) {
-      isActive ? Animation(false) : Animation(true);
+    if (modal.isActive != activePrev) {
+      modal.isActive ? Animation(false) : Animation(true);
     }
-    setActivePrev(isActive);
-  }, [isActive]);
+    setActivePrev(modal.isActive);
+  }, [modal.isActive]);
 
   return (
     <div className={clsx(styles.Modal)} ref={refModal}>
-      <div className={clsx(styles.Modal_background)} ref={refModalBack} />
+      <div className={clsx(styles.Modal_background)} ref={refModalBack} onClick={() => modal.closeModal()} />
       {children}
     </div>
   );
