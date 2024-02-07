@@ -141,18 +141,17 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         // autoPlay
         loop
         muted
-        onLoadedMetadata={() => {
+        onLoadedData={() => {
           if (refVideoPlayer.current) {
             refVideoPlayer.current.currentTime = 0.01;
             playVideo();
           }
-          setTimeout(() => {
-            setStable(true);
-          }, 500);
-        }}
-        // onCanPlay={() => {
 
-        // }}
+          setStable(true);
+          // setTimeout(() => {
+          //   setStable(true);
+          // }, 500);
+        }}
         ref={refVideoPlayer}
       />
       {/* <div className={clsx(styles.HomeContentMob_categories)}>
