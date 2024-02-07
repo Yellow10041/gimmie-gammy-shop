@@ -122,7 +122,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         src={posts[activeIndex] && getMediaPath(posts[activeIndex].attributes.video)}
         preload="auto"
         playsInline
-        autoPlay
+        // autoPlay
         loop
         muted
         onLoadedMetadata={() => {
@@ -132,7 +132,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
           }
           setTimeout(() => {
             setStable(true);
-          }, 400);
+          }, 500);
         }}
         // onCanPlay={() => {
 
