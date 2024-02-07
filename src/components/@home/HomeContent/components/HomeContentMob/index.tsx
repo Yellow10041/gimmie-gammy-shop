@@ -47,7 +47,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
 
     let inter = setInterval(() => {
       if (refVideoPlayer.current) {
-        refVideoPlayer.current.volume = 1;
+        refVideoPlayer.current.volume = 0;
         const videoPromise = refVideoPlayer.current.play();
 
         if (videoPromise != undefined) {
@@ -79,51 +79,43 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
 
   const Animation = () => {
     if (refVideoPlayer.current) {
+      refVideoPlayer.current.muted = false;
       refVideoPlayer.current.volume = 1;
     }
 
-    // let tl1 = gsap.timeline({
-    //   defaults: {
-    //     delay: 0,
-    //     duration: 0.3,
-    //     ease: "power1.inOut",
-    //   },
-    // });
+    let tl1 = gsap.timeline({
+      defaults: {
+        delay: 0,
+        duration: 0.3,
+        ease: "power1.inOut",
+      },
+    });
 
-    // tl1.to(refPlay.current, {
-    //   opacity: 0,
-    //   scale: 1.2,
-    // });
+    tl1.to(refPlay.current, {
+      opacity: 0,
+      scale: 1.2,
+    });
 
-    // tl1.eventCallback("onComplete", () => {
-    //   gsap.set(refPlay.current, {
-    //     display: "none",
-    //   });
-    // });
+    tl1.eventCallback("onComplete", () => {
+      gsap.set(refPlay.current, {
+        display: "none",
+      });
+    });
   };
 
-  // useEffect(() => {
-  //   if (isStable == true && refVideoPlayer.current) {
-  //     refVideoPlayer.current.muted = false;
-  //     refVideoPlayer.current.volume = 1;
-
-  //     const videoPromise = refVideoPlayer.current.play();
-
-  //     if (videoPromise != undefined) {
-  //       videoPromise.then((_) => {
-  //         if (refVideoPlayer.current) {
-  //           refVideoPlayer.current.play();
-  //         }
-  //       });
-  //     }
-  //   }
-  // }, [isStable]);
+  useEffect(() => {
+    if (isStable == true && refVideoPlayer.current) {
+      refVideoPlayer.current.muted = false;
+      refVideoPlayer.current.volume = 1;
+      refVideoPlayer.current.play();
+    }
+  }, [isStable]);
 
   return (
     <div className={clsx(styles.HomeContentMob)}>
-      {/* <div className={clsx(styles.HomeContentMob_unmute)} ref={refPlay} onClick={() => Animation()}>
+      <div className={clsx(styles.HomeContentMob_unmute)} ref={refPlay} onClick={() => Animation()}>
         Unmute
-      </div> */}
+      </div>
       <video
         className={clsx(
           styles.HomeContentMob_videoPlayer
@@ -135,7 +127,6 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         autoPlay
         loop
         muted
-        // controls
         // onLoadedMetadata={() => {
         // setTimeout(() => {
         //   setStable(true);
@@ -144,10 +135,11 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         onCanPlay={() => {
           if (refVideoPlayer.current) {
             refVideoPlayer.current.currentTime = 0.01;
+            refVideoPlayer.current.play();
           }
           setTimeout(() => {
             setStable(true);
-          }, 100);
+          }, 400);
         }}
         ref={refVideoPlayer}
       />
@@ -159,9 +151,6 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         direction="vertical"
         slidesPerView={"auto"}
         className={styles.HomeContentMob_swiper}
-        onSliderFirstMove={() => {
-          Animation();
-        }}
         onSliderMove={() => {
           // console.log("start");
 
@@ -171,13 +160,11 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
           setStable(false);
         }}
         onTransitionEnd={() => {
-          console.log("end");
+          // console.log("end");
 
           swiper && setActiveIndex(swiper.activeIndex);
 
           if (refVideoPlayer.current) {
-            refVideoPlayer.current.muted = false;
-            refVideoPlayer.current.volume = 1;
             refVideoPlayer.current.play();
           }
         }}
