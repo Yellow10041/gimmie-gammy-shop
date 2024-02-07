@@ -44,19 +44,17 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
     if (refVideoPlayer.current) {
       refVideoPlayer.current.volume = 0;
     }
+  }, []);
+
+  useEffect(() => {
+    if (refVideoPlayer.current) {
+      refVideoPlayer.current.volume = 0;
+    }
 
     let inter = setInterval(() => {
       if (refVideoPlayer.current) {
         refVideoPlayer.current.volume = 0;
-        const videoPromise = refVideoPlayer.current.play();
-
-        if (videoPromise != undefined) {
-          videoPromise.then((_) => {
-            if (refVideoPlayer.current) {
-              refVideoPlayer.current.play();
-            }
-          });
-        }
+        refVideoPlayer.current.play();
 
         setTimeout(() => {
           if (refVideoPlayer.current && refVideoPlayer.current.currentTime > 0) {
@@ -127,12 +125,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         autoPlay
         loop
         muted
-        // onLoadedMetadata={() => {
-        // setTimeout(() => {
-        //   setStable(true);
-        // }, 400);
-        // }}
-        onCanPlay={() => {
+        onLoadedMetadata={() => {
           if (refVideoPlayer.current) {
             refVideoPlayer.current.currentTime = 0.01;
             refVideoPlayer.current.play();
@@ -141,6 +134,9 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
             setStable(true);
           }, 400);
         }}
+        // onCanPlay={() => {
+
+        // }}
         ref={refVideoPlayer}
       />
       {/* <div className={clsx(styles.HomeContentMob_categories)}>
