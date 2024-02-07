@@ -32,11 +32,11 @@ const PostRightSide: React.FunctionComponent<PostRightSideProps> = ({ id }) => {
   };
 
   const likes = useMemo(() => {
-    return getRandomNumber(100, 1000);
+    return getRandomNumber(100, 3000);
   }, []);
 
   const comments = useMemo(() => {
-    return getRandomNumber(100, likes);
+    return getRandomNumber(1, 5);
   }, []);
 
   return (
