@@ -40,6 +40,21 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
     },
   };
 
+  const playVideo = () => {
+    let inter = setInterval(() => {
+      if (refVideoPlayer.current) {
+        refVideoPlayer.current.play();
+
+        setTimeout(() => {
+          if (refVideoPlayer.current && refVideoPlayer.current.currentTime > 1) {
+            console.log("play video");
+            clearInterval(inter);
+          }
+        }, 100);
+      }
+    }, 100);
+  };
+
   useEffect(() => {
     if (refVideoPlayer.current) {
       refVideoPlayer.current.volume = 0;
@@ -63,7 +78,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
           }
         }, 100);
       }
-    }, 500);
+    }, 100);
   }, [load]);
 
   useEffect(() => {
@@ -106,7 +121,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
     if (isStable == true && refVideoPlayer.current) {
       refVideoPlayer.current.muted = false;
       refVideoPlayer.current.volume = 1;
-      refVideoPlayer.current.play();
+      playVideo();
     }
   }, [isStable]);
 
@@ -129,7 +144,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         onLoadedMetadata={() => {
           if (refVideoPlayer.current) {
             refVideoPlayer.current.currentTime = 0.01;
-            refVideoPlayer.current.play();
+            playVideo();
           }
           setTimeout(() => {
             setStable(true);
@@ -159,10 +174,11 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         onTransitionEnd={() => {
           // console.log("end");
 
-          swiper && setActiveIndex(swiper.activeIndex);
-
-          if (refVideoPlayer.current) {
-            refVideoPlayer.current.play();
+          if (swiper && activeIndex == swiper.activeIndex) {
+            playVideo();
+            setStable(true);
+          } else {
+            swiper && setActiveIndex(swiper.activeIndex);
           }
         }}
       >
