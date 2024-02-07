@@ -148,8 +148,9 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         }}
         onSliderMove={() => {
           // console.log("start");
-
-          setActiveIndex(-1);
+          if (refVideoPlayer.current) {
+            refVideoPlayer.current.pause();
+          }
           setStable(false);
         }}
       >
