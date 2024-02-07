@@ -1,7 +1,9 @@
+"use client";
+
 import clsx from "clsx";
 import styles from "./index.module.scss";
 
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 
 import { MainContext } from "@/providers/MainContext";
 
@@ -21,28 +23,33 @@ interface PostRightSideProps {
 const PostRightSide: React.FunctionComponent<PostRightSideProps> = ({ id }) => {
   const { modalShareVideo, modalEmail, setButtonTrigger } = useContext(MainContext);
 
+  const [isClient, setIsClient] = useState(false);
+  const [likes] = useState(getRandomNumber(100, 300));
+  const [comments] = useState(getRandomNumber(1, 5));
+
   const HandleButtonComment = () => {
     setButtonTrigger("Comment");
     modalEmail.openModal();
   };
 
-  const HandleButtonRepost = () => {
-    modalShareVideo.openModal();
-    modalShareVideo.setVideoID(id);
-  };
+  // const HandleButtonRepost = () => {
+  //   modalShareVideo.openModal();
+  //   modalShareVideo.setVideoID(id);
+  // };
 
-  const likes = useMemo(() => {
-    return getRandomNumber(100, 300);
-  }, []);
-
-  const comments = useMemo(() => {
-    return getRandomNumber(1, 5);
+  useEffect(() => {
+    setIsClient(true);
   }, []);
 
   return (
     <div className={clsx(styles.PostRightSide)}>
-      <ButtonPostStat icon={<IconLike />} value={likes} like />
-      <ButtonPostStat icon={<IconComments />} value={comments} onClick={HandleButtonComment} />
+      {isClient && (
+        <>
+          <ButtonPostStat icon={<IconLike />} value={likes} like />
+          <ButtonPostStat icon={<IconComments />} value={comments} onClick={HandleButtonComment} />
+        </>
+      )}
+
       {/* <ButtonPostStat
         icon={<IconSent />}
         value={statistic.repost}

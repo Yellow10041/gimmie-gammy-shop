@@ -22,7 +22,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
   const { load, modalCreateAccount } = useContext(MainContext);
 
   const [swiper, setSwiper] = useState<ISwiper>();
-  // const [getPost, setGetPost] = useState<number>(3);
+  const [getPost, setGetPost] = useState<number>(3);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isStable, setStable] = useState<boolean>(false);
 
@@ -57,9 +57,9 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
   }, [load]);
 
   useEffect(() => {
-    // if (activeIndex + 3 == getPost) {
-    //   setGetPost((prev) => prev + 1);
-    // }
+    if (activeIndex + 3 == getPost) {
+      setGetPost((prev) => prev + 1);
+    }
 
     if (activeIndex == posts.length - 1 && posts.length != 0) {
       modalCreateAccount.openModal();
@@ -81,17 +81,10 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
       },
     });
 
-    tl1.fromTo(
-      refPlay.current,
-      {
-        opacity: 1,
-        scale: 1,
-      },
-      {
-        opacity: 0,
-        scale: 1.2,
-      }
-    );
+    tl1.to(refPlay.current, {
+      opacity: 0,
+      scale: 1.2,
+    });
 
     tl1.eventCallback("onComplete", () => {
       gsap.set(refPlay.current, {
@@ -99,6 +92,14 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
       });
     });
   };
+
+  useEffect(() => {
+    if (isStable == true && refVideoPlayer.current) {
+      refVideoPlayer.current.muted = false;
+      refVideoPlayer.current.play();
+      refVideoPlayer.current.volume = 1;
+    }
+  }, [isStable]);
 
   return (
     <div className={clsx(styles.HomeContentMob)}>
@@ -110,7 +111,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
           styles.HomeContentMob_videoPlayer
           // posts[activeIndex] == "h" && styles.contain
         )}
-        src={getMediaPath(posts[activeIndex].attributes.video)}
+        src={posts[activeIndex] && getMediaPath(posts[activeIndex].attributes.video)}
         preload="auto"
         playsInline
         loop
@@ -119,7 +120,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         onLoadedMetadata={() => {
           setTimeout(() => {
             setStable(true);
-          }, 400);
+          }, 100);
         }}
         ref={refVideoPlayer}
       />
@@ -131,20 +132,25 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         direction="vertical"
         slidesPerView={"auto"}
         className={styles.HomeContentMob_swiper}
-        onSlideChangeTransitionStart={() => {
-          setActiveIndex(-1);
-          setStable(false);
-          swiper ? setActiveIndex(swiper.activeIndex) : null;
+        onSliderFirstMove={() => {
+          Animation();
+        }}
+        onTransitionEnd={() => {
+          // console.log("end");
+
+          swiper && setActiveIndex(swiper.activeIndex);
 
           if (refVideoPlayer.current) {
             refVideoPlayer.current.muted = false;
             refVideoPlayer.current.play();
             refVideoPlayer.current.volume = 1;
-            Animation();
           }
         }}
-        onSlideChangeTransitionEnd={() => {
-          refVideoPlayer.current?.play();
+        onSliderMove={() => {
+          // console.log("start");
+
+          setActiveIndex(-1);
+          setStable(false);
         }}
       >
         {posts.map((posts: IPost, i: number) => (
