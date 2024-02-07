@@ -76,6 +76,10 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
   }, [activeIndex]);
 
   const Animation = () => {
+    if (refVideoPlayer.current) {
+      refVideoPlayer.current.volume = 1;
+    }
+
     let tl1 = gsap.timeline({
       defaults: {
         delay: 0,
@@ -96,22 +100,22 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
     });
   };
 
-  useEffect(() => {
-    if (isStable == true && refVideoPlayer.current) {
-      refVideoPlayer.current.muted = false;
-      refVideoPlayer.current.volume = 1;
+  // useEffect(() => {
+  //   if (isStable == true && refVideoPlayer.current) {
+  //     refVideoPlayer.current.muted = false;
+  //     refVideoPlayer.current.volume = 1;
 
-      const videoPromise = refVideoPlayer.current.play();
+  //     const videoPromise = refVideoPlayer.current.play();
 
-      if (videoPromise != undefined) {
-        videoPromise.then((_) => {
-          if (refVideoPlayer.current) {
-            refVideoPlayer.current.play();
-          }
-        });
-      }
-    }
-  }, [isStable]);
+  //     if (videoPromise != undefined) {
+  //       videoPromise.then((_) => {
+  //         if (refVideoPlayer.current) {
+  //           refVideoPlayer.current.play();
+  //         }
+  //       });
+  //     }
+  //   }
+  // }, [isStable]);
 
   return (
     <div className={clsx(styles.HomeContentMob)}>
@@ -126,13 +130,14 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         src={posts[activeIndex] && getMediaPath(posts[activeIndex].attributes.video)}
         preload="auto"
         playsInline
+        autoPlay
         loop
         muted
-        controls
+        // controls
         onLoadedMetadata={() => {
           setTimeout(() => {
             setStable(true);
-          }, 100);
+          }, 200);
         }}
         ref={refVideoPlayer}
       />
@@ -147,11 +152,6 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         onSliderFirstMove={() => {
           Animation();
         }}
-        onTransitionEnd={() => {
-          // console.log("end");
-
-          swiper && setActiveIndex(swiper.activeIndex);
-        }}
         onSliderMove={() => {
           // console.log("start");
 
@@ -159,6 +159,17 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
             refVideoPlayer.current.pause();
           }
           setStable(false);
+        }}
+        onTransitionEnd={() => {
+          console.log("end");
+
+          swiper && setActiveIndex(swiper.activeIndex);
+
+          if (refVideoPlayer.current) {
+            refVideoPlayer.current.muted = false;
+            refVideoPlayer.current.volume = 1;
+            refVideoPlayer.current.play();
+          }
         }}
       >
         {posts.map((posts: IPost, i: number) => (
