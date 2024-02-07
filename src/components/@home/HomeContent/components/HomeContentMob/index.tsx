@@ -48,7 +48,16 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
     let inter = setInterval(() => {
       if (refVideoPlayer.current) {
         refVideoPlayer.current.volume = 0;
-        refVideoPlayer.current.play();
+        const videoPromise = refVideoPlayer.current.play();
+
+        if (videoPromise != undefined) {
+          videoPromise.then((_) => {
+            if (refVideoPlayer.current) {
+              refVideoPlayer.current.play();
+            }
+          });
+        }
+
         if (refVideoPlayer.current.currentTime > 0) {
           clearInterval(inter);
         }
@@ -67,12 +76,6 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
   }, [activeIndex]);
 
   const Animation = () => {
-    if (refVideoPlayer.current) {
-      refVideoPlayer.current.muted = false;
-      refVideoPlayer.current.play();
-      refVideoPlayer.current.volume = 1;
-    }
-
     let tl1 = gsap.timeline({
       defaults: {
         delay: 0,
@@ -96,8 +99,17 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
   useEffect(() => {
     if (isStable == true && refVideoPlayer.current) {
       refVideoPlayer.current.muted = false;
-      refVideoPlayer.current.play();
       refVideoPlayer.current.volume = 1;
+
+      const videoPromise = refVideoPlayer.current.play();
+
+      if (videoPromise != undefined) {
+        videoPromise.then((_) => {
+          if (refVideoPlayer.current) {
+            refVideoPlayer.current.play();
+          }
+        });
+      }
     }
   }, [isStable]);
 
@@ -116,7 +128,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         playsInline
         loop
         muted
-        controls={false}
+        controls
         onLoadedMetadata={() => {
           setTimeout(() => {
             setStable(true);
@@ -139,15 +151,10 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
           // console.log("end");
 
           swiper && setActiveIndex(swiper.activeIndex);
-
-          if (refVideoPlayer.current) {
-            refVideoPlayer.current.muted = false;
-            refVideoPlayer.current.play();
-            refVideoPlayer.current.volume = 1;
-          }
         }}
         onSliderMove={() => {
           // console.log("start");
+
           if (refVideoPlayer.current) {
             refVideoPlayer.current.pause();
           }
