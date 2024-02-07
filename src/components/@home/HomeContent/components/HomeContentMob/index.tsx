@@ -112,9 +112,9 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
 
   return (
     <div className={clsx(styles.HomeContentMob)}>
-      <div className={clsx(styles.HomeContentMob_unmute)} ref={refPlay} onClick={() => Animation()}>
+      {/* <div className={clsx(styles.HomeContentMob_unmute)} ref={refPlay} onClick={() => Animation()}>
         Unmute
-      </div>
+      </div> */}
       <video
         className={clsx(
           styles.HomeContentMob_videoPlayer

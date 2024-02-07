@@ -153,12 +153,12 @@ const LayoutMain: React.FunctionComponent<ILayoutMainProps> = ({ children }) => 
         <Modal modal={modalOrder}>
           <Order />
         </Modal>
-        <Modal modal={modalCookies}>
-          <Cookies />
-        </Modal>
 
         {windowWidth > 1025 ? (
           <>
+            <Modal modal={modalCookies}>
+              <Cookies />
+            </Modal>
             <MainDesk>{children}</MainDesk>
           </>
         ) : (
