@@ -174,7 +174,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
       >
         {posts.map((posts: IPost, i: number) => (
           <SwiperSlide className={styles.HomeContentMob_swiper_item} key={i}>
-            <PostMob isStable={isStable} {...posts} />
+            {({ isActive, isPrev, isNext }) => <PostMob isStable={isStable} isActive={isActive || isPrev || isNext} {...posts} />}
           </SwiperSlide>
         ))}
       </Swiper>
