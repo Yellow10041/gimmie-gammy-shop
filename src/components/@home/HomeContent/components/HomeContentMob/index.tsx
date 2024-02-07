@@ -134,10 +134,15 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         loop
         muted
         // controls
-        onLoadedMetadata={() => {
+        // onLoadedMetadata={() => {
+        // setTimeout(() => {
+        //   setStable(true);
+        // }, 400);
+        // }}
+        onCanPlay={() => {
           setTimeout(() => {
             setStable(true);
-          }, 200);
+          }, 400);
         }}
         ref={refVideoPlayer}
       />
