@@ -140,9 +140,12 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         // }, 400);
         // }}
         onCanPlay={() => {
+          if (refVideoPlayer.current) {
+            refVideoPlayer.current.currentTime = 0.01;
+          }
           setTimeout(() => {
             setStable(true);
-          }, 400);
+          }, 100);
         }}
         ref={refVideoPlayer}
       />
