@@ -57,7 +57,8 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         refVideoPlayer.current.play();
 
         setTimeout(() => {
-          if (refVideoPlayer.current && refVideoPlayer.current.currentTime > 0) {
+          if (refVideoPlayer.current && refVideoPlayer.current.currentTime > 1) {
+            console.log("play video");
             clearInterval(inter);
           }
         }, 100);
