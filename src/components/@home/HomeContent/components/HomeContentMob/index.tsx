@@ -83,7 +83,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
   }, [load]);
 
   useEffect(() => {
-    if (activeIndex + 3 == getPost) {
+    if (activeIndex + 3 >= getPost) {
       setGetPost((prev) => prev + 1);
     }
 
@@ -182,7 +182,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
           }
         }}
       >
-        {posts.map((posts: IPost, i: number) => (
+        {posts.slice(0, getPost).map((posts: IPost, i: number) => (
           <SwiperSlide className={styles.HomeContentMob_swiper_item} key={i}>
             {({ isActive, isPrev, isNext }) => <PostMob isStable={isStable} isActive={isActive || isPrev || isNext} {...posts} />}
           </SwiperSlide>
