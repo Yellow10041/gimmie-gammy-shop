@@ -69,7 +69,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
 
     let inter = setInterval(() => {
       if (refVideoPlayer.current) {
-        refVideoPlayer.current.volume = 0;
+        refVideoPlayer.current.volume = 1;
         refVideoPlayer.current.play();
 
         setTimeout(() => {
@@ -77,9 +77,9 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
             console.log("play video");
             clearInterval(inter);
           }
-        }, 100);
+        }, 50);
       }
-    }, 100);
+    }, 50);
   }, [load]);
 
   useEffect(() => {
