@@ -46,7 +46,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         refVideoPlayer.current.play();
 
         setTimeout(() => {
-          if (refVideoPlayer.current && refVideoPlayer.current.currentTime > 0.3) {
+          if (refVideoPlayer.current && refVideoPlayer.current.currentTime > 0.02) {
             setStable(true);
             console.log("play video");
             clearInterval(inter);
@@ -62,25 +62,25 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
     }
   }, []);
 
-  useEffect(() => {
-    if (refVideoPlayer.current) {
-      refVideoPlayer.current.volume = 0;
-    }
+  // useEffect(() => {
+  //   if (refVideoPlayer.current) {
+  //     refVideoPlayer.current.volume = 0;
+  //   }
 
-    let inter = setInterval(() => {
-      if (refVideoPlayer.current) {
-        refVideoPlayer.current.volume = 1;
-        refVideoPlayer.current.play();
+  //   let inter = setInterval(() => {
+  //     if (refVideoPlayer.current) {
+  //       refVideoPlayer.current.volume = 1;
+  //       refVideoPlayer.current.play();
 
-        setTimeout(() => {
-          if (refVideoPlayer.current && refVideoPlayer.current.currentTime > 1) {
-            console.log("play video");
-            clearInterval(inter);
-          }
-        }, 50);
-      }
-    }, 50);
-  }, [load]);
+  //       setTimeout(() => {
+  //         if (refVideoPlayer.current && refVideoPlayer.current.currentTime > 1) {
+  //           console.log("play video");
+  //           clearInterval(inter);
+  //         }
+  //       }, 50);
+  //     }
+  //   }, 50);
+  // }, [load]);
 
   useEffect(() => {
     if (activeIndex + 3 >= getPost) {
@@ -125,6 +125,27 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
       playVideo();
     }
   }, [isStable]);
+  useEffect(() => {
+    const play = () => {
+      let inter = setInterval(() => {
+        if (refVideoPlayer.current) {
+          refVideoPlayer.current.volume = 1;
+          refVideoPlayer.current.play();
+
+          setTimeout(() => {
+            if (refVideoPlayer.current && refVideoPlayer.current.currentTime > 1) {
+              console.log("play video");
+              clearInterval(inter);
+            }
+          }, 50);
+        }
+      }, 50);
+    };
+
+    window.addEventListener("click", play);
+
+    return () => window.removeEventListener("click", play);
+  });
 
   return (
     <div className={clsx(styles.HomeContentMob)}>
@@ -141,11 +162,12 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         src={posts[activeIndex] && getMediaPath(posts[activeIndex].attributes.video)}
         preload="auto"
         playsInline
-        // autoPlay
+        autoPlay={false}
         loop
         muted
         onLoadedData={() => {
           if (refVideoPlayer.current) {
+            console.log("on loaded data");
             refVideoPlayer.current.currentTime = 0.01;
             playVideo();
           }
@@ -154,6 +176,29 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
           // setTimeout(() => {
           //   setStable(true);
           // }, 500);
+        }}
+        onCanPlay={() => {
+          if (refVideoPlayer.current) {
+            console.log("on can play");
+          }
+        }}
+        onCanPlayThrough={() => {
+          if (refVideoPlayer.current) {
+            console.log("on can play through");
+          }
+        }}
+        onLoadedMetadata={() => {
+          if (refVideoPlayer.current) {
+            console.log("on loaded metadata");
+          }
+        }}
+        onLoadedMetadataCapture={() => {
+          if (refVideoPlayer.current) {
+            console.log("on loaded metadata сapture");
+
+            refVideoPlayer.current.currentTime = 0.01;
+            playVideo();
+          }
         }}
         ref={refVideoPlayer}
       />
