@@ -39,6 +39,10 @@ html {
     box-shadow: inset 0px 0px get-vw(7px) #fff;
     border-radius: get-vw(20px);
   }
+
+  @media screen and (max-width: $mobile) {
+    overscroll-behavior-y: contain;
+  }
 }
 
 html,
