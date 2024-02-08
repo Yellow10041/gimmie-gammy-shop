@@ -46,13 +46,14 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         refVideoPlayer.current.play();
 
         setTimeout(() => {
-          if (refVideoPlayer.current && refVideoPlayer.current.currentTime > 1) {
+          if (refVideoPlayer.current && refVideoPlayer.current.currentTime > 0.3) {
+            setStable(true);
             console.log("play video");
             clearInterval(inter);
           }
-        }, 100);
+        }, 50);
       }
-    }, 100);
+    }, 50);
   };
 
   useEffect(() => {
@@ -147,7 +148,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
             playVideo();
           }
 
-          setStable(true);
+          // setStable(true);
           // setTimeout(() => {
           //   setStable(true);
           // }, 500);

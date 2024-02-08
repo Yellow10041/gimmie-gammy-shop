@@ -34,25 +34,25 @@ const PostMob: React.FunctionComponent<IPostMobProps> = ({ id, attributes, isSta
 
   return (
     <div className={clsx(styles.PostMob)} data-videoID={id}>
-      {isActive && (
-        <video
-          className={clsx(
-            styles.PostMob_video,
-            // orientation == "h" && styles.contain,
-            isStable && styles.hidden
-          )}
-          src={getMediaPath(attributes.video)}
-          onLoadedMetadata={() => {
-            if (refVideo.current) {
-              refVideo.current.currentTime = 0.01;
-            }
-          }}
-          muted
-          playsInline
-          preload="metadata"
-          ref={refVideo}
-        />
-      )}
+      {/* {isActive && ( */}
+      <video
+        className={clsx(
+          styles.PostMob_video,
+          // orientation == "h" && styles.contain,
+          isStable && styles.hidden
+        )}
+        src={getMediaPath(attributes.video)}
+        onLoadedMetadata={() => {
+          if (refVideo.current) {
+            refVideo.current.currentTime = 0.01;
+          }
+        }}
+        muted
+        playsInline
+        preload="metadata"
+        ref={refVideo}
+      />
+      {/* )} */}
       <div className={clsx(styles.PostMob_info)}>
         <div className={clsx(styles.PostMob_info_header)}>
           <div className={clsx(styles.PostMob_info_detail)}>
