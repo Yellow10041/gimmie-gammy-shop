@@ -13,6 +13,7 @@ import PostMob from "@/components/PostMob";
 import gsap from "gsap";
 import { IPost } from "@/types/post";
 import { getMediaPath } from "@/utils/getMediaPath";
+import { IconLoader } from "@/public/img/icons/loader";
 
 interface IHomeContentMobProps {
   posts: IPost[];
@@ -153,7 +154,11 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         Unmute
       </div> */}
 
-      {!isStable && <div className={clsx(styles.HomeContentMob_loading)}></div>}
+      {!isStable && (
+        <div className={clsx(styles.HomeContentMob_loading)}>
+          <IconLoader />
+        </div>
+      )}
       <video
         className={clsx(
           styles.HomeContentMob_videoPlayer

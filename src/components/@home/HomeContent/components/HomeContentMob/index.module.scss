@@ -6,18 +6,26 @@
 
 .HomeContentMob_loading {
   position: absolute;
-  top: 5%;
-  left: 5%;
+  top: 50%;
+  transform: translate(0, -50%);
 
-  width: get-vw-ms(50px);
-  height: get-vw-ms(10px);
+  display: flex;
+  justify-content: center;
+  height: get-vw-ms(200px);
+  width: 100%;
 
-  background-color: #fff;
-  border-radius: get-vw-ms(20px);
-
-  animation: loading 2s ease-in-out infinite;
+  transform-origin: center;
 
   z-index: 50;
+
+  & svg {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: auto;
+
+    animation: loading 2s ease-in-out infinite;
+  }
 }
 
 @keyframes loading {
