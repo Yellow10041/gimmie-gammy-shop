@@ -4,6 +4,32 @@
   height: 100%;
 }
 
+.HomeContentMob_loading {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+
+  width: get-vw-ms(50px);
+  height: get-vw-ms(10px);
+
+  background-color: #fff;
+  border-radius: get-vw-ms(20px);
+
+  animation: loading 2s ease-in-out infinite;
+
+  z-index: 50;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .HomeContentMob_unmute {
   display: flex;
   justify-content: center;

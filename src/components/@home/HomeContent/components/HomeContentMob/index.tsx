@@ -131,6 +131,8 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
       {/* <div className={clsx(styles.HomeContentMob_unmute)} ref={refPlay} onClick={() => Animation()}>
         Unmute
       </div> */}
+
+      {!isStable && <div className={clsx(styles.HomeContentMob_loading)}></div>}
       <video
         className={clsx(
           styles.HomeContentMob_videoPlayer
