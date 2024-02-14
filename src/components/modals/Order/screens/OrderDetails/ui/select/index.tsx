@@ -96,7 +96,15 @@ export const Select: FC<ISelect> = ({ items, onDataChange, clearTrigger }) => {
           {/* <div className={clsx(styles.Select_header_title_icon)}>
             <IconBed />
           </div> */}
-          <input className={clsx(styles.Select_header_title_text)} placeholder="Choose your country" onChange={(e) => setSearchValue(e.target.value)} ref={refInput} autoComplete="off" />
+          <input
+            className={clsx(styles.Select_header_title_text)}
+            type="text"
+            name="country"
+            placeholder="Choose your country"
+            onChange={(e) => setSearchValue(e.target.value)}
+            ref={refInput}
+            autoComplete="off"
+          />
         </div>
         <div className={clsx(styles.Select_header_icon, isOpen && styles.active)}>
           <IconArrowSmall />
