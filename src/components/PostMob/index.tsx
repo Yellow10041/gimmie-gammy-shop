@@ -67,7 +67,7 @@ const PostMob: React.FunctionComponent<IPostMobProps> = ({ id, attributes, isSta
         // }}
         muted
         playsInline
-        // preload="metadata"
+        preload="metadata"
         ref={refVideo}
       />
       {/* )} */}
