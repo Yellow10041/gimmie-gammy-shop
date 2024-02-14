@@ -55,6 +55,8 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         }, 50);
       }
     }, 50);
+
+    // refVideoPlayer.current && refVideoPlayer.current.play();
   };
 
   useEffect(() => {
@@ -126,6 +128,7 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
       playVideo();
     }
   }, [isStable]);
+
   useEffect(() => {
     const play = () => {
       let inter = setInterval(() => {
@@ -146,7 +149,16 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
     window.addEventListener("click", play);
 
     return () => window.removeEventListener("click", play);
-  });
+  }, []);
+
+  const [countVideoLoading, setCountVideoLoading] = useState<number>(0);
+
+  const videoLoad = () => {
+    setCountVideoLoading((prev) => {
+      console.log(`start load video ${prev + 1}`);
+      return prev + 1;
+    });
+  };
 
   return (
     <div className={clsx(styles.HomeContentMob)}>
@@ -154,27 +166,26 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         Unmute
       </div> */}
 
-      {!isStable && (
+      {/* {!isStable && (
         <div className={clsx(styles.HomeContentMob_loading)}>
           <IconLoader />
         </div>
-      )}
+      )} */}
       <video
         className={clsx(
           styles.HomeContentMob_videoPlayer
           // posts[activeIndex] == "h" && styles.contain
         )}
-        src={posts[activeIndex] && getMediaPath(posts[activeIndex].attributes.video)}
+        src={posts[activeIndex] && `${getMediaPath(posts[activeIndex].attributes.video)}#t=0.1`}
         preload="auto"
         playsInline
         autoPlay={false}
-        loop
         muted
+        loop
         onLoadedData={() => {
           if (refVideoPlayer.current) {
             console.log("on loaded data");
-            refVideoPlayer.current.currentTime = 0.01;
-            playVideo();
+            // playVideo();
           }
 
           // setStable(true);
@@ -182,27 +193,32 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
           //   setStable(true);
           // }, 500);
         }}
+        // onEnded={() => {
+        //   if (refVideoPlayer.current) {
+        //     refVideoPlayer.current.currentTime = 0;
+        //     refVideoPlayer.current.play();
+        //   }
+        // }}
         onCanPlay={() => {
           if (refVideoPlayer.current) {
-            console.log("on can play");
+            // console.log("on can play");
           }
         }}
         onCanPlayThrough={() => {
           if (refVideoPlayer.current) {
-            console.log("on can play through");
+            // console.log("on can play through");
+            playVideo();
           }
         }}
         onLoadedMetadata={() => {
           if (refVideoPlayer.current) {
-            console.log("on loaded metadata");
+            // console.log("on loaded metadata");
           }
         }}
         onLoadedMetadataCapture={() => {
           if (refVideoPlayer.current) {
-            console.log("on loaded metadata сapture");
-
-            refVideoPlayer.current.currentTime = 0.01;
-            playVideo();
+            // console.log("on loaded metadata сapture");
+            // refVideoPlayer.current.currentTime = 0.01;
           }
         }}
         ref={refVideoPlayer}
@@ -236,7 +252,9 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
       >
         {posts.slice(0, getPost).map((posts: IPost, i: number) => (
           <SwiperSlide className={styles.HomeContentMob_swiper_item} key={i}>
-            {({ isActive, isPrev, isNext }) => <PostMob isStable={isStable} isActive={isActive || isPrev || isNext} {...posts} />}
+            {({ isActive, isPrev, isNext }) => (
+              <PostMob countVideoLoading={countVideoLoading} onLoadVideo={videoLoad} index={i} isStable={isStable} isActive={isActive || isPrev || isNext} {...posts} />
+            )}
           </SwiperSlide>
         ))}
       </Swiper>

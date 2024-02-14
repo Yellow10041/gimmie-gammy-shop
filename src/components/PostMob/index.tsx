@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import styles from "./index.module.scss";
 
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import getRandomNickname from "@/utils/getRandomNickname";
 
@@ -17,9 +17,12 @@ import { getMediaPath } from "@/utils/getMediaPath";
 interface IPostMobProps extends IPost {
   isStable: boolean;
   isActive: boolean;
+  countVideoLoading: number;
+  index: number;
+  onLoadVideo: Function;
 }
 
-const PostMob: React.FunctionComponent<IPostMobProps> = ({ id, attributes, isStable, isActive }) => {
+const PostMob: React.FunctionComponent<IPostMobProps> = ({ id, attributes, isStable, isActive, countVideoLoading, index, onLoadVideo }) => {
   const { modalOrder } = useContext(MainContext);
 
   const [randomAvatar, setRandomAvatar] = useState<string>(`/img/test/avatars/${Math.floor(Math.random() * 6) + 1}.jpg`);
@@ -32,6 +35,21 @@ const PostMob: React.FunctionComponent<IPostMobProps> = ({ id, attributes, isSta
     modalOrder.openModal();
   };
 
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (countVideoLoading == index) {
+      const video = document.createElement("video");
+      video.addEventListener("canplaythrough", () => {
+        setLoaded(true);
+        onLoadVideo();
+        // console.log("load video " + id);
+      });
+      video.src = getMediaPath(attributes.video);
+      video.load();
+    }
+  }, [countVideoLoading]);
+
   return (
     <div className={clsx(styles.PostMob)} data-videoID={id}>
       {/* {isActive && ( */}
@@ -41,15 +59,15 @@ const PostMob: React.FunctionComponent<IPostMobProps> = ({ id, attributes, isSta
           // orientation == "h" && styles.contain,
           isStable && styles.hidden
         )}
-        src={getMediaPath(attributes.video)}
-        onLoadedMetadata={() => {
-          if (refVideo.current) {
-            refVideo.current.currentTime = 0.01;
-          }
-        }}
+        src={getMediaPath(attributes.video) + "#t=0.01"}
+        // onLoadedMetadata={() => {
+        //   if (refVideo.current) {
+        //     refVideo.current.currentTime = 0.01;
+        //   }
+        // }}
         muted
         playsInline
-        preload="metadata"
+        // preload="metadata"
         ref={refVideo}
       />
       {/* )} */}
