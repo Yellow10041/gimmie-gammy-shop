@@ -44,7 +44,18 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
   const playVideo = () => {
     let inter = setInterval(() => {
       if (refVideoPlayer.current) {
-        refVideoPlayer.current.play();
+        let promise = refVideoPlayer.current.play();
+
+        if (promise !== undefined) {
+          promise
+            .then((_) => {
+              // Autoplay started!
+            })
+            .catch((error) => {
+              // Autoplay was prevented.
+              // Show a "Play" button so that user can start playback.
+            });
+        }
 
         setTimeout(() => {
           if (refVideoPlayer.current && refVideoPlayer.current.currentTime > 0.02) {
@@ -58,6 +69,14 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
 
     // refVideoPlayer.current && refVideoPlayer.current.play();
   };
+
+  // useEffect(() => {
+  //   if (isStable && swiper) {
+  //     gsap.set(swiper.wrapperEl, {
+  //       pointerEvents: "all",
+  //     });
+  //   }
+  // }, [isStable]);
 
   useEffect(() => {
     if (refVideoPlayer.current) {
@@ -123,8 +142,8 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
 
   useEffect(() => {
     if (isStable == true && refVideoPlayer.current) {
-      refVideoPlayer.current.muted = false;
-      refVideoPlayer.current.volume = 1;
+      // refVideoPlayer.current.muted = false;
+      // refVideoPlayer.current.volume = 1;
       playVideo();
     }
   }, [isStable]);
@@ -133,8 +152,21 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
     const play = () => {
       let inter = setInterval(() => {
         if (refVideoPlayer.current) {
+          refVideoPlayer.current.muted = false;
           refVideoPlayer.current.volume = 1;
-          refVideoPlayer.current.play();
+
+          let promise = refVideoPlayer.current.play();
+
+          if (promise !== undefined) {
+            promise
+              .then((_) => {
+                // Autoplay started!
+              })
+              .catch((error) => {
+                // Autoplay was prevented.
+                // Show a "Play" button so that user can start playback.
+              });
+          }
 
           setTimeout(() => {
             if (refVideoPlayer.current && refVideoPlayer.current.currentTime > 1) {
@@ -231,22 +263,20 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         direction="vertical"
         slidesPerView={"auto"}
         className={styles.HomeContentMob_swiper}
-        onSliderMove={() => {
-          // console.log("start");
-
+        onSliderFirstMove={() => {
           if (refVideoPlayer.current) {
             refVideoPlayer.current.pause();
           }
+
           setStable(false);
         }}
         onTransitionEnd={() => {
-          // console.log("end");
-
           if (swiper && activeIndex == swiper.activeIndex) {
-            playVideo();
             setStable(true);
           } else {
-            swiper && setActiveIndex(swiper.activeIndex);
+            if (swiper) {
+              setActiveIndex(swiper.activeIndex);
+            }
           }
         }}
       >
