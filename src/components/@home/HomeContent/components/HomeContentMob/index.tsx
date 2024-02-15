@@ -283,7 +283,11 @@ const HomeContentMob: React.FunctionComponent<IHomeContentMobProps> = ({ posts }
         {posts.slice(0, getPost).map((posts: IPost, i: number) => (
           <SwiperSlide className={styles.HomeContentMob_swiper_item} key={i}>
             {({ isActive, isPrev, isNext }) => (
-              <PostMob countVideoLoading={countVideoLoading} onLoadVideo={videoLoad} index={i} isStable={isStable} isActive={isActive || isPrev || isNext} {...posts} />
+              <>
+                {(isActive || isPrev || isNext) && (
+                  <PostMob countVideoLoading={countVideoLoading} onLoadVideo={videoLoad} index={i} isStable={isStable} isActive={isActive || isPrev || isNext} {...posts} />
+                )}
+              </>
             )}
           </SwiperSlide>
         ))}

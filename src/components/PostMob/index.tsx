@@ -37,8 +37,21 @@ const PostMob: React.FunctionComponent<IPostMobProps> = ({ id, attributes, isSta
 
   const [loaded, setLoaded] = useState(false);
 
+  // useEffect(() => {
+  //   if (countVideoLoading == index) {
+  //     const video = document.createElement("video");
+  //     video.addEventListener("canplaythrough", () => {
+  //       setLoaded(true);
+  //       onLoadVideo();
+  //       // console.log("load video " + id);
+  //     });
+  //     video.src = getMediaPath(attributes.video);
+  //     video.load();
+  //   }
+  // }, [countVideoLoading]);
+
   useEffect(() => {
-    if (countVideoLoading == index) {
+    if (isActive) {
       const video = document.createElement("video");
       video.addEventListener("canplaythrough", () => {
         setLoaded(true);
@@ -48,7 +61,7 @@ const PostMob: React.FunctionComponent<IPostMobProps> = ({ id, attributes, isSta
       video.src = getMediaPath(attributes.video);
       video.load();
     }
-  }, [countVideoLoading]);
+  }, [isActive]);
 
   return (
     <div className={clsx(styles.PostMob)} data-videoID={id}>
