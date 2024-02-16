@@ -4,27 +4,27 @@ export const dataVideoCategories = [
     count: 9,
   },
   {
-    title: "Action",
+    title: "Women Clothing",
     count: 12,
   },
   {
-    title: "Simulation",
+    title: "Dresses",
     count: 45,
   },
   {
-    title: "Strategy",
+    title: "Tops",
     count: 123,
   },
   {
-    title: "Role-playing",
+    title: "Blouses",
     count: 23,
   },
   {
-    title: "Adventure",
+    title: "Jeans",
     count: 11,
   },
   {
-    title: "Puzzle",
+    title: "Shoes",
     count: 2,
   },
 ];

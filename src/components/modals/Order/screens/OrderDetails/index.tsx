@@ -4,6 +4,7 @@ import styles from "./index.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Select } from "./ui/select";
 import countryList from "react-select-country-list";
+import { dataCountries } from "./data/dataCountries";
 
 interface IOrderDetails {
   selectAddress: any;
@@ -84,7 +85,7 @@ export const OrderDetails: FC<IOrderDetails> = ({ selectAddress }) => {
               placeholder="Your Email"
             />
           </div>
-          <Select onDataChange={changeDataType} clearTrigger={selectClearTrigger} items={[...options]} />
+          <Select onDataChange={changeDataType} clearTrigger={selectClearTrigger} items={[...dataCountries]} />
           <input
             className={clsx(styles.OrderDetails_form_input)}
             {...register("phone", {
