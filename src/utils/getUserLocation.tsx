@@ -1,8 +1,7 @@
 import axios from "axios";
 
 export const getUserLocation = async () => {
-  const url =
-    "https://ipgeolocation.abstractapi.com/v1/?api_key=1330303f6957465688a72807d94d0c72&ip_address=5.58.131.7";
+  const url = "https://ipgeolocation.abstractapi.com/v1/?api_key=1330303f6957465688a72807d94d0c72";
 
   let data = "null";
 
