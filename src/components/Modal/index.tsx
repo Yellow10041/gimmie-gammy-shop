@@ -16,9 +16,9 @@ const Modal: React.FunctionComponent<IModalProps> = ({ modal, children }) => {
   const refModal = useRef<HTMLDivElement>(null);
   const refModalBack = useRef<HTMLDivElement>(null);
 
-  const hiddenVideoBox = (isDisplay: boolean) => {
+  const hiddenVideoBox = (isDisplay: "flex" | "none") => {
     gsap.set(refModal.current, {
-      display: isDisplay ? "flex" : "none",
+      display: isDisplay,
     });
   };
 
@@ -49,7 +49,7 @@ const Modal: React.FunctionComponent<IModalProps> = ({ modal, children }) => {
     reverse ? tl1.reverse(0) : null;
 
     tl1.eventCallback("onReverseComplete", () => {
-      hiddenVideoBox(false);
+      hiddenVideoBox("none");
     });
   };
 

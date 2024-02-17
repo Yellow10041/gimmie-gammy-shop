@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from "react";
+import { FC, FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import clsx from "clsx";
 import styles from "./index.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -22,6 +22,8 @@ export const OrderDetails: FC<IOrderDetails> = ({ selectAddress }) => {
   const [isButtonActive, setButtonActive] = useState<boolean>(false);
   const [country, setCountry] = useState<string>("");
   const [selectClearTrigger, setSelectClearTrigger] = useState<boolean>(false);
+
+  const refForm = useRef<HTMLFormElement>(null);
 
   const options = useMemo(() => countryList().getData(), []);
 
@@ -62,46 +64,38 @@ export const OrderDetails: FC<IOrderDetails> = ({ selectAddress }) => {
     setButtonActive(active);
   }, [watchAllFields]);
 
+  const formSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (refForm.current) {
+      const formData = Object.fromEntries(new FormData(refForm.current).entries());
+
+      // console.log(formData);
+      selectAddress(formData);
+
+      refForm.current.reset();
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // для плавної прокрутки
+    });
+  };
+
   return (
     <div className={clsx(styles.OrderDetails)}>
       <div className={clsx(styles.OrderDetails_title)}>please fill in the details of where to send your order</div>
-      <form className={clsx(styles.OrderDetails_form)} onSubmit={handleSubmit(onSubmit)}>
+      <form className={clsx(styles.OrderDetails_form)} onSubmit={(e) => formSubmit(e)} ref={refForm}>
         <div className={clsx(styles.OrderDetails_form_inputs)}>
           <div className={clsx(styles.OrderDetails_form_inputs_box)}>
-            <input
-              className={clsx(styles.OrderDetails_form_input)}
-              {...register("name", {
-                required: "Name is required",
-              })}
-              type="text"
-              placeholder="Your Name"
-            />
-            <input
-              className={clsx(styles.OrderDetails_form_input)}
-              {...register("email", {
-                required: "Email is required",
-              })}
-              type="text"
-              placeholder="Your Email"
-            />
+            <input className={clsx(styles.OrderDetails_form_input)} onBlur={scrollToTop} name="name" type="text" placeholder="Your Name" />
+            <input className={clsx(styles.OrderDetails_form_input)} onBlur={scrollToTop} name="email" type="text" placeholder="Your Email" />
           </div>
           <Select onDataChange={changeDataType} clearTrigger={selectClearTrigger} items={[...dataCountries]} />
-          <input
-            className={clsx(styles.OrderDetails_form_input)}
-            {...register("phone", {
-              required: "Phone Number is required",
-            })}
-            type="text"
-            placeholder="Your Phone Number"
-          />
-          <input
-            className={clsx(styles.OrderDetails_form_input)}
-            {...register("address", {
-              required: "Address is required",
-            })}
-            type="text"
-            placeholder="Your Address"
-          />
+          <input className={clsx(styles.OrderDetails_form_input)} onBlur={scrollToTop} name="phone" type="text" placeholder="Your Phone Number" />
+          <input className={clsx(styles.OrderDetails_form_input)} onBlur={scrollToTop} name="address" type="text" placeholder="Your Address" />
         </div>
         <button className={clsx(styles.OrderDetails_button, !isButtonActive && styles.disable)}>Create Order</button>
       </form>

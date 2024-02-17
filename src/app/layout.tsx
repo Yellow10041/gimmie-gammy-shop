@@ -24,14 +24,12 @@ export const metadata: Metadata = {
   description: "GIMY GAMY",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
         {/* <!-- Google Tag Manager --> */}
         <script
           dangerouslySetInnerHTML={{
@@ -46,10 +44,7 @@ export default function RootLayout({
         />
         {/* <!-- End Google Tag Manager --> */}
         {/* <!-- Google tag (gtag.js) --> */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-CHLRDDT1TC"
-        ></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-CHLRDDT1TC"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -66,12 +61,7 @@ export default function RootLayout({
         <LayoutMain>{children}</LayoutMain>
         {/* <!-- Google Tag Manager (noscript) --> */}
         <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-T263FCG6"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
+          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T263FCG6" height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe>
         </noscript>
         {/* <!-- End Google Tag Manager (noscript) --> */}
       </body>

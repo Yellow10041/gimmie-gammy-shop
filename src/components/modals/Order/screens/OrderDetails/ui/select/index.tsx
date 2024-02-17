@@ -89,6 +89,13 @@ export const Select: FC<ISelect> = ({ items, onDataChange, clearTrigger }) => {
     setSearchValue("");
   }, [clearTrigger]);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // для плавної прокрутки
+    });
+  };
+
   return (
     <div className={clsx(styles.Select)} ref={(ref) => (refClick.current = ref as Element)}>
       <div className={clsx(styles.Select_header)} onClick={handleOpen}>
@@ -98,12 +105,12 @@ export const Select: FC<ISelect> = ({ items, onDataChange, clearTrigger }) => {
           </div> */}
           <input
             className={clsx(styles.Select_header_title_text)}
+            onBlur={scrollToTop}
             type="text"
             name="country"
             placeholder="Choose your country"
             onChange={(e) => setSearchValue(e.target.value)}
             ref={refInput}
-            autoComplete="off"
           />
         </div>
         <div className={clsx(styles.Select_header_icon, isOpen && styles.active)}>
