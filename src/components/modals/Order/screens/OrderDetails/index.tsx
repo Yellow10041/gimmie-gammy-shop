@@ -70,8 +70,17 @@ export const OrderDetails: FC<IOrderDetails> = ({ selectAddress }) => {
     if (refForm.current) {
       const formData = Object.fromEntries(new FormData(refForm.current).entries());
 
+      let resMas: any = {};
+
+      Object.entries(formData).map((data) => {
+        resMas = {
+          ...resMas,
+          [`${data[0]}: `]: data[1],
+        };
+      });
+
       // console.log(formData);
-      selectAddress(formData);
+      selectAddress(resMas);
 
       refForm.current.reset();
     }
