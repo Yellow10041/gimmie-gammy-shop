@@ -12,12 +12,6 @@ const Home = async () => {
 
   let posts = data.posts.data;
 
-  const compareRandom = () => {
-    return Math.random() - 0.5;
-  };
-
-  posts.sort(compareRandom);
-
   return <>{data.posts.data[0] ? <HomeContent posts={posts} /> : <>DB connection error</>}</>;
 };
 
