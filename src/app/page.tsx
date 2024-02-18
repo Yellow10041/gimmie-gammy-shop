@@ -10,7 +10,15 @@ async function getData() {
 const Home = async () => {
   const data = await getData();
 
-  return <>{data.posts.data[0] ? <HomeContent posts={data.posts.data} /> : <>DB connection error</>}</>;
+  let posts = data.posts.data;
+
+  const compareRandom = () => {
+    return Math.random() - 0.5;
+  };
+
+  posts.sort(compareRandom);
+
+  return <>{data.posts.data[0] ? <HomeContent posts={posts} /> : <>DB connection error</>}</>;
 };
 
 export default Home;
